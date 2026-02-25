@@ -23,6 +23,12 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
 - `Data` tab  >  `Queries and connections` panel
 
 ### Macro list and implementation
+- **Switch to table** : not related to the other actions
+  - `Create Table` : Turn the active worksheet's used range into a table set as listObject
+  - `Delete Table` : Delete all present listObject in the active worksheet and recreate default columns range
+ 
+- **exportation** :  
+
 - **Append query** : with the M formula implemented, the generated `query` will be used within every way of importation
   
 - **Import data** :
@@ -38,6 +44,19 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   - `Clean Connections`
   - `Show  listObjects`
   - `Clean listObjects`
+
+> [!NOTE]
+> All names used in the previous macro are define as global variables, and so can be set or reset depending of the needs
+
+- **Settings and variables** :
+  - `Reset settings` : Reset all global variables, _for each_ one remaining empty
+  - `Change settings` : Set default or access names
+  - `Change columns` : Set header column's value for sheets
+  - `Set Management` : Set which macros is activated in Management
+  - `Execute Management` : Execute some macros in Management
+
+> [!WARNING]
+> The global variables get empty when an unhandled error occurs. For a confortable experience, it is relevant to let `Reset Setting` at the begining of each macros processing with query or exportation.
 
 ## 🧩 
 
