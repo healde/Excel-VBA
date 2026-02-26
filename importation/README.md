@@ -49,7 +49,7 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   - `Reset settings`     : affect only empty strings
   - `Change settings`
   - `Change columns`
-
+  - 
   - `Set Management`     : Set which macros is activated in `Management`
   - `Execute Management`
 
