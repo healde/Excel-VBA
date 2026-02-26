@@ -26,7 +26,8 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
 - **Switch to table** : not related to the other actions
   - `Create Table` : Turn the active worksheet's used range into a table set as listObject
   - `Delete Table` : Delete all present listObject in the active worksheet and recreate default columns range
- 
+
+** **
 - **`Exportation`** : Make distant file from set of tables and default sheets. All is first prepared in the current workbook to be kept as control. 
 
 - **Append or clean `Queries`** : with the M formula implemented, a generated query can be used through every kind of importation
@@ -38,7 +39,8 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
 - **Set connection** :
   - `Connection Only`      ⚠ : One set a unusuable type of connection without setting Data Model
   - `Connection w. DataModel` : The other make the connection suitable with setting Data Model
-    
+
+** **    
 - **`Management`** : This routine can be implemented after instructions in Macros setting connections or before instructions in Macros importing data, both for control or preprocessing. It wraps the sub routines below in the same order :
   - `Show  Connections`
   - `Clean Connections`
@@ -49,7 +51,6 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   - `Reset settings`     : affect only empty strings
   - `Change settings`
   - `Change columns`
-  - 
   - `Set Management`     : Set which macros is activated in `Management`
   - `Execute Management`
 
