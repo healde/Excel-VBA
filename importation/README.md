@@ -13,7 +13,7 @@ A Query made of a formula coded in (PowerQuery) M langage is called through `Act
 The distant workbook is so described by the M formula, and have to be the same as well as its location must be correct (of course).
 
 ## 🎨 Panel
-In this program, I purpose _one macro_ for each **method used**, as well as for usefull automated routine like showing or cleaning. I wrapped these auxiliary routine into one called `Management()`, in which I put in comment every routine out of interest for chosen tests.
+In this program, I purpose _one macro_ for each **method used**, as well as for usefull automated routine like showing or cleaning. I wrapped some of these auxiliary routine into one called `Management`, in which you can desactivate routine that would be out of interest for chosen tests. The macro managing `Queries` is more like an agent trying to get right questions to the user, out of the current list.
 
 This is how I displayed them on my fluent ribbon
 <img width="1132" height="118" alt="Macro Ribbon" src="https://github.com/user-attachments/assets/11a9f03a-39bd-4d4f-9081-66b04b4a7e82" />
@@ -27,36 +27,37 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   - `Create Table` : Turn the active worksheet's used range into a table set as listObject
   - `Delete Table` : Delete all present listObject in the active worksheet and recreate default columns range
  
-- **exportation** :  
+- **`Exportation`** : Make distant file from set of tables and default sheets. All is first prepared in the current workbook to be kept as control. 
 
-- **Append query** : with the M formula implemented, the generated `query` will be used within every way of importation
+- **Append or clean `Queries`** : with the M formula implemented, a generated query can be used through every kind of importation
   
 - **Import data** :
   - `Import F. External`   : One kind of importation will do by its own
-  - `Import F. Connection` : Another requires _a connection_ set to process it with <ins>the creation</ins> of _a Data Model_
+  - `Import F. Connection` : Another requires _a connection_ set with <ins>the creation</ins> of _a Data Model_ before process
     
 - **Set connection** :
   - `Connection Only`      ⚠ : One set a unusuable type of connection without setting Data Model
   - `Connection w. DataModel` : The other make the connection suitable with setting Data Model
     
-- **Management** : This routine can be implemented after instructions in Macros setting connections or before instructions in Macros importing data, both for control or preprocessing. It wraps the sub routines below in the same order :
+- **`Management`** : This routine can be implemented after instructions in Macros setting connections or before instructions in Macros importing data, both for control or preprocessing. It wraps the sub routines below in the same order :
   - `Show  Connections`
   - `Clean Connections`
   - `Show  listObjects`
   - `Clean listObjects`
 
-> [!NOTE]
-> All names used in the previous macro are define as global variables, and so can be set or reset depending of the needs
-
-- **Settings and variables** :
-  - `Reset settings` : Reset all global variables, _for each_ one remaining empty
-  - `Change settings` : Set default or access names
-  - `Change columns` : Set header column's value for sheets
-  - `Set Management` : Set which macros is activated in Management
-  - `Execute Management` : Execute some macros in Management
+- **Settings and variables** : All names used in the previous macro are define as global variables, and so can be set or reset depending of the needs :
+  - `Reset settings`     : affect only empty strings
+  - `Change settings`
+  - `Change columns`
+    
+  - `Set Management`     : Set which macros is activated in `Management`
+  - `Execute Management`
 
 > [!WARNING]
-> The global variables get empty when an unhandled error occurs. For a confortable experience, it is relevant to let `Reset Setting` at the begining of each macros processing with query or exportation.
+> The **global variables** get empty when an unhandled error occurs. For a confortable experience, it is relevant to let `Reset Setting` at the begining of the macro `exportation` or any _other_ processing with queries.
+
+> [!NOTE]
+> You can so change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting`
 
 ## 🧩 
 
