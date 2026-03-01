@@ -57,7 +57,7 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   - `Execute Management`
 
 > [!WARNING]
-> The **global variables** get empty when an unhandled error occurs. For a confortable experience, it is relevant to let `Reset Setting` at the begining of the macro `exportation` or any _other_ processing with queries.
+> The **global variables** get empty when an unhandled error occurs. For a confortable experience, it is relevant to let `Reset Setting` at the begining of the macro `exportation` or any _other_ processing with queries. There aren't yet any macro that reset nor empty the variables whatsoever they are containing.
 
 > [!NOTE]
 > You can so change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting`
