@@ -16,11 +16,13 @@ The distant workbook is so described by the M formula, and have to be the same a
 In this program, I purpose _one macro_ for each **method used**, as well as for usefull automated routine like showing or cleaning. I wrapped some of these auxiliary routine into one called `Management`, in which you can desactivate routine that would be out of interest for chosen tests. The macro managing `Queries` is more like an agent trying to get right questions to the user, out of the current list.
 
 This is how I displayed them on my fluent ribbon
-<img width="1616" height="132" alt="Macro Ribbon full" src="https://github.com/user-attachments/assets/d6ecec35-a36c-4795-aa2d-f63c03b0a2d3" />
+<img width="1632" height="167" alt="Macro Ribbon full" src="https://github.com/user-attachments/assets/4ff58535-a92c-4117-b738-70d883f98d98" />
 
 ### Controling manualy
 I considered to get **tests mixed** with _vba_ functions and the _classical_ built-in way: for this we also need to display 
 - `Data` tab  >  `Queries & connections` panel
+
+### ***<p align="center"> or </p>***
 
 ### Macro list and implementation
 - **Switch to table** : not related to the other actions
