@@ -69,10 +69,10 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 ## In-built indentation and conflicts
 - Manualy duplicate a query : add suffix " (2)" if suffix "(2)" is not found, else it bring the suffix to the format " (i)" with the next available index.
 - Create same name query through Vba will generate an error. The macro here add +1 to the highest of first index from every names, and replace the first index of actual name. If no index is found, the new index will be 1 and added at the end of the name.
-  -
+    - -
 - Manualy add connection : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
 - Multiplicate the connection through Vba : It should add right side index starting at 1 to the name whatever it is ending by a letter or a number. Index increases to make the first available name.
-  -
+    - -
 - 
 
 ## Special behaviors
