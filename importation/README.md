@@ -66,5 +66,5 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 > [!NOTE]
 > You can change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting`
 
-## 🧩 
+## In-built indentation and conflicts
 
