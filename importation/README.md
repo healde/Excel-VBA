@@ -36,7 +36,7 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   
 - **Import data** :
   - `Import F. External`   : One kind of importation will do by its own
-  - `Import F. Connection` : Another requires _a connection_ set with <ins>the creation</ins> of _a Data Model_ before process
+  - `Import F. Connection` : Another requires _a connection_ set <ins>with</ins> the creation of _a Data Model_ before process
     
 - **Set connection** :
   - `Connection Only`      ⚠ : One set a unusuable type of connection without setting Data Model
@@ -56,11 +56,15 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   - `Set Management`     : Set which macros is activated in `Management`
   - `Execute Management`
 
+### About using global variables
+
 > [!WARNING]
-> The **global variables** get empty when an unhandled error occurs. For a confortable experience, it is relevant to let `Reset Setting` at the begining of the macro `exportation` or any _other_ processing with queries. There aren't yet any macro that reset nor empty the variables whatsoever they are containing.
+> The global variables **get empty** when an <ins>unhandled error</ins> occurs.
+
+For a confortable experience, it is relevant to let `Reset Setting` at the begining of the macro `exportation` or any _other_ that is processing with queries. This is why it is only built to ensure the way that no empty value would be call at any moment. Whereas this code doesn't include any macro that would reset nor empty the variables what ever they are containing.
 
 > [!NOTE]
-> You can so change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting`
+> You can change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting`
 
 ## 🧩 
 
