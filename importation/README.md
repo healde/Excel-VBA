@@ -75,7 +75,7 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 <br>
 
 - Manualy add connection : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
-- Multiplicate the connection through Vba : It won't replace any existing one. If the connection already exists, it adds right side to the name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
+- Multiplicate the connection through Vba : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
 - 
 
 ## Special behaviors
