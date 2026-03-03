@@ -67,12 +67,15 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 > You can change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting`
 
 ## In-built indentation and conflicts
-- Manualy duplicate a query : add suffix " (2)" if suffix "(2)" is not found, else it bring the suffix to the format " (i)" with the next available index.
-- Create same name query through Vba will generate an error. The macro here add +1 to the highest of first index from every names, and replace the first index of actual name. If no index is found, the new index will be 1 and added at the end of the name.
-    - -
+- Manualy duplicate sheet : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available), else suffix " (2)" is added.
+<br>
+
+- Manualy duplicate a query : if suffix like "(i)" is found, it is brought to a like " (i)" format with the next available index inside (not lowest available), else suffix " (2)" is added.
+- Create same name query through Vba method will generate an error. The macro made here add +1 to the highest number beyong all first number of each name, and replace it as new index in the actual name. If no number is found, the new index will be 1 and added at the end of the name.      
+<br>
+
 - Manualy add connection : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
-- Multiplicate the connection through Vba : It should add right side index starting at 1 to the name whatever it is ending by a letter or a number. Index increases to make the first available name.
-    - -
+- Multiplicate the connection through Vba : It won't replace any existing one. If the connection already exists, it adds right side to the name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
 - 
 
 ## Special behaviors
