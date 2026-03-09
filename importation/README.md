@@ -67,16 +67,20 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 > You can change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting`
 
 ## In-built indentation and conflicts
-- Manualy duplicate sheet : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available), else suffix " (2)" is added.
 <br>
 
-- Manualy duplicate a query : if suffix like "(i)" is found, it is brought to a like " (i)" format with the next available index inside (not lowest available), else suffix " (2)" is added.
-- Create same name query through Vba method will generate an error. The macro made here add +1 to the highest number beyong all first number of each name, and replace it as new index in the actual name. If no number is found, the new index will be 1 and added at the end of the name.      
+- _Manualy_ duplicate **sheet** : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available one), else suffix " (2)" is added.
 <br>
 
-- Manualy add connection : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
-- Multiplicate the connection through Vba : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
-- 
+- _Manualy_ duplicate a **query** : if suffix like "(i)" is found, it is brought to a like " (i)" format with the next available index inside (not lowest available one), else suffix " (2)" is added.
+- Create same name **query** _through Vba_ method will generate an error. The macro made here add +1 to the highest number beyong all first number of each name, and replace it as new index in the actual name. If no number is found, the new index will be 1 and added at the end of the name.      
+<br>
+
+- _Manualy_ add **connection** : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
+- Multiplicate the **connection** _through Vba_ : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
+<br>
+
+
 
 ## Special behaviors
 
