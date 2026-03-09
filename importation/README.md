@@ -16,7 +16,7 @@ The distant workbook is so described by the M formula, and have to be the same a
 In this program, I purpose _one macro_ for each **method used**, as well as for usefull automated routine like showing or cleaning. I wrapped some of these auxiliary routine into one called `Management`, in which you can desactivate routine that would be out of interest for chosen tests. The macro managing `Queries` is more like an agent trying to get right questions to the user, out of the current list.
 
 This is how I displayed them on my fluent ribbon
-<img width="1632" height="167" alt="Macro Ribbon full" src="https://github.com/user-attachments/assets/4ff58535-a92c-4117-b738-70d883f98d98" />
+<img width="1682" height="162" alt="Macro Ribbon full" src="https://github.com/user-attachments/assets/7679a6d6-ca8f-4cb9-8b8f-862789100831" />
 
 ### Controling manualy
 I considered to get **tests mixed** with _vba_ functions and the _classical_ built-in way: for this we also need to display 
@@ -30,6 +30,7 @@ I considered to get **tests mixed** with _vba_ functions and the _classical_ bui
   - `Delete Table` : Delete all present listObject in the active worksheet and recreate default columns range
 
 ** **
+
 - **`Exportation`** : Make distant file from set of tables and default sheets. All is first prepared in the current workbook to be kept as control. 
 
 - **Append or clean `Queries`** : with the M formula implemented, a generated query can be used through every kind of importation
