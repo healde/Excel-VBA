@@ -85,9 +85,11 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 ## Special behaviors
 
-### The Data Model log
-While getting deleted with VBA and not appearing anymore in "Existing Connections" panel, _ThisWorkbookDataModel_ remains present in "Queries & Connections" panel, unlike the manual method which removes it when loading the query without adding the data to the data model or when deleting the query. Both methods will make the data model persisting as empty in the hidden connections list, and you'll have to close and re-open the workbook to not see this special connection from anywhere.
+### _ThisWorkbookDataModel_ in : "Existing Connections" panel **Vs** "Queries & Connections" panel
 
-### Data Model source
-Importing create another DataModel connection. Emptying the original one seems to let make possible to use the others for loading the query from an older connection (since the query is common)
+
+> [!IMPORTANT]
+> _ThisWorkbookDataModel_ is anyway not directly deletable, neither manually nor through Vba
+
+### Import through Vba add fantom connection _ThisWorkbookDataModel_**i**
 
