@@ -79,17 +79,26 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 - _Manualy_ add **connection** : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
 - Multiplicate the **connection** _through Vba_ : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
+  
+> [!NOTE]
+> The queryTable that is associated to the connection refuses to quote a query already quoted. It adds the lowest available index to query name in a like " i" format (or to comfirm: "_i" depending where you see it). But this alternative name seems to be set as effectless information because **does not affect** importation since the connection still link the right query.
 <br>
-
-
 
 ## Special behaviors
 
 ### _ThisWorkbookDataModel_ in : "Existing Connections" panel **Vs** "Queries & Connections" panel
 
-
 > [!IMPORTANT]
 > _ThisWorkbookDataModel_ is anyway not directly deletable, neither manually nor through Vba
 
 ### Import through Vba add fantom connection _ThisWorkbookDataModel_**i**
+with i lowest available
+
+** **
+
+### Import with making queryTable that already exist will remove the old one
+
+### cannot refresh dataTable where connections have been disabled
+
+### Add query with space arround the name
 
