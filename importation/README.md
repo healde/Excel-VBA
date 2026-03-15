@@ -79,10 +79,10 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 - _Manualy_ add **connection** : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
 - Multiplicate the **connection** _through Vba_ : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
-  
-> [!NOTE]
-> The queryTable that is associated to the connection refuses to quote a query already quoted. It adds the lowest available index to query name in a like " i" format (or to comfirm: "_i" depending where you see it). But this alternative name seems to be set as effectless information because **does not affect** importation since the connection still link the right query.
-<br>
+
+### Effectless indentations
+
+- Multiple connections can be added for the single query, but the related queryTables cannot quote a query already quoted by any other queryTable. It means that whereas a connection can refer to a same query name than an other, the following associated queryTable have to change this name if an other queryTable already refer to it. This one then adds the lowest available index to query name that it refers in a like " i" format (or to comfirm: "_i" depending where from you see it). This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
 
 ## Special behaviors
 
