@@ -7,10 +7,19 @@ Without finding as much as solutions than I expected in forums, I recorded Macro
 ### how then
 After having compose a whole set of commands to run some tests, I asked for help to AI and it let me knows about some internal process in the Microsoft environment and then followed me in my course.
 
-## 🎶 Basic work
+## 🎶 Query structure
 A Query made of a formula coded in (PowerQuery) M langage is called through `ActiveSheet.ListObjects.Add` method to generate a data table from elsewhere. It is possible to get directly the data, or to manage the connection with the distant workbook before getting the data. But in this last case, documentation is especialy confusing and differences emerge between Vba functions and manual process.
 
 The distant workbook is so described by the M formula, and have to be the same as well as its location must be correct (of course).
+
+## 🎶 Connection type
+
+At any moment you might appreciate to get the list of usable connections and data tables through a build-in dedicated panel. Here is how to display :
+- `Data` tab  >  `Existing connections` panel
+
+The process described below only use connections in the workbook. But data tables are from two types :
+- Query tables are related to connection and constitute the object model.
+- 
 
 ## 🎨 Panel
 In this program, I purpose _one macro_ for each **method used**, as well as for usefull automated routine like showing or cleaning. I wrapped some of these auxiliary routine into one called `Management`, in which you can desactivate routine that would be out of interest for chosen tests. The macro managing `Queries` is more like an agent trying to get right questions to the user, out of the current list.
@@ -82,7 +91,7 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 ### Effectless indentations
 
-- Multiple connections can be added for the single query, but the related queryTables cannot quote a query already quoted by any other queryTable. It means that whereas a connection can refer to a same query name than an other, the following associated queryTable have to change this name if an other queryTable already refer to it. This one then adds the lowest available index to query name that it refers in a like " i" format (or to comfirm: "_i" depending where from you see it). This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
+- Multiple connections can be added for a single query, but the related queryTables cannot quote a query already quoted by any other queryTable. It means that whereas a connection can refer to a same query name than an other, the following associated queryTable have to change this name if an other queryTable already refer to it. This one then adds the lowest available index to query name that it refers in a like " i" format (or to comfirm: "_i" depending where from you see it). This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
 
 ## Special behaviors
 
