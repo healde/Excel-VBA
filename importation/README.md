@@ -14,26 +14,27 @@ The distant workbook is so described by the M formula, and have to be the same a
 
 ## 🎶 Connection type
 
-At any moment you might appreciate to get the list of usable connections and data tables through a build-in dedicated panel. Here is how to display :
-- `Data` tab  >  `Existing connections` panel
+At any moment you might want to access to the list of usable connections and data tables through a built-in dedicated panel. Here is how to display :
+- `Data` _tab_  >  `Existing connections` _panel_
 
 The process described below only use connections in the workbook. But data tables are from two types :
-- Query tables are related to connection and constitute the object model.
-- 
+- Connection tables constitute the object model, and are alternative to query tables for importing with connection previously set
+- Workbook tables refer directly to tables presently loaded in some cells
+
+> [!NOTE]
+> From this panel, it is possible to manually (re)load both connections or tables, but it duplicates the query source into a new one
 
 ## 🎨 Panel
-In this program, I purpose _one macro_ for each **method used**, as well as for usefull automated routine like showing or cleaning. I wrapped some of these auxiliary routine into one called `Management`, in which you can desactivate routine that would be out of interest for chosen tests. The macro managing `Queries` is more like an agent trying to get right questions to the user, out of the current list.
+In this program, I purpose _alternative macro_ to main built-in functions, plus some for usefull automated routine like showing or cleaning. I wrapped some of these auxiliary routine into one macro called `Management`, in which you can desactivate routine that would be out of interest for chosen tests. The macro managing `Queries` is more like an agent trying to get right questions to the user, out of the current list.
 
 This is how I displayed them on my fluent ribbon
 <img width="1682" height="162" alt="Macro Ribbon full" src="https://github.com/user-attachments/assets/7679a6d6-ca8f-4cb9-8b8f-862789100831" />
 
-### Controling manualy
-I considered to get **tests mixed** with _vba_ functions and the _classical_ built-in way: for this we also need to display 
-- `Data` tab  >  `Queries & connections` panel
-
-### ***<p align="center"> or </p>***
-
 ### Macro list and implementation
+
+> [!WARNING]
+> Before using any connection through Vba, you must once open `Data` _tab_  >  `Queries & connections` _panel_ to activate the provider ***Microsoft.Mashup.OleDB.1***
+
 - **Switch to table** : not related to the other actions
   - `Create Table` : Turn the active worksheet's used range into a table set as listObject
   - `Delete Table` : Delete all present listObject in the active worksheet and recreate default columns range
@@ -91,17 +92,20 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 ### Effectless indentations
 
-- Multiple connections can be added for a single query, but the related queryTables cannot quote a query already quoted by any other queryTable. It means that whereas a connection can refer to a same query name than an other, the following associated queryTable have to change this name if an other queryTable already refer to it. This one then adds the lowest available index to query name that it refers in a like " i" format (or to comfirm: "_i" depending where from you see it). This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
+- Multiple connections can be added for a single query, but the related queryTables cannot quote a query already quoted by any other queryTable. It means that whereas a connection can refer to a same query name than an other, the following associated queryTable have to change this name if an other queryTable already refer to it. This one then adds the lowest available index to query name that it refers in a like " i" format. This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
+
+- Importing through Vba add fantom connection _ThisWorkbookDataModel_**i** with i lowest available. This one seems to be deletable without any effect on the displayed table, as well as it is invisible from `Existing connections` panel
 
 ## Special behaviors
 
-### _ThisWorkbookDataModel_ in : "Existing Connections" panel **Vs** "Queries & Connections" panel
+### Model object
+
+Dispite remaining belong connections, the model object only display the count of connections table. This is why _ThisWorkbookDataModel_ connection is not directly deletable, neither manually nor through Vba.
 
 > [!IMPORTANT]
-> _ThisWorkbookDataModel_ is anyway not directly deletable, neither manually nor through Vba
+> The name _ThisWorkbookDataModel_
 
-### Import through Vba add fantom connection _ThisWorkbookDataModel_**i**
-with i lowest available
+ in `Queries & Connections` panel
 
 ** **
 
