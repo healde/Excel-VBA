@@ -74,11 +74,11 @@ This is how I displayed them on my fluent ribbon
   
 - **Import data** :
   - `Import F. External`   : One kind of importation will do by its own
-  - `Import F. Connection` : Another requires _a connection_ set <ins>with</ins> the creation of _a Data Model_ before processing
+  - `Import F. Connection` : Another requires _a connection_ <ins>linked</ins> into _Data Model_ collection before processing
     
 - **Set connection** :
-  - `Connection Only`      ⚠ : One set a unusuable type of connection without setting data model object
-  - `Connection w. DataModel` : The other make the connection suitable with setting data model object
+  - `Connection Only`      ⚠ : One set a unusuable type of connection by not setting a data model object
+  - `Connection w. DataModel` : The other make the connection suitable by setting a data model object
 
 ** **    
 - **`Management`** : This routine can be implemented after instructions in Macros setting connections or before instructions in Macros importing data, both for control or preprocessing. It wraps the sub routines below in the same order :
