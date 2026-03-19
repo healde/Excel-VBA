@@ -29,7 +29,7 @@ The process described below only use connections in the workbook. But data table
 - Connection tables constitute the object model, and seem to be alternative to _query tables_ by using previously set connection for making importation
 - Workbook tables refer directly to tables presently loaded in some cells
 
-> [!NOTE]
+> [!TIP]
 > From this panel, it is possible to manually (re)load both connections or tables, but it duplicates the **query** source **into a new one**
 
 ### 🌐 Model object
@@ -126,7 +126,7 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 - Importing through Vba add fantom connection _ThisWorkbookDataModel_**i** with i lowest available. This one seems to be deletable without any effect on the displayed table, as well as it is invisible from the `Existing connections` panel.
 
-## Special behaviors
+## 🖌 Special behaviors
 
 ### Import with making queryTable that already exist will remove the old one
 
