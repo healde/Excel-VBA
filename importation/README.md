@@ -30,7 +30,7 @@ The process described below only use connections in the workbook. But data table
 - Workbook tables refer directly to tables presently loaded in some cells
 
 > [!TIP]
-> From this panel, it is possible to manually (re)load both connections or tables, but it duplicates the **query** source **into a new one**
+> From this panel, it is possible to manually (re)load both connections or tables, but it first duplicates the **query** source **into a new one**, and the new workbook table then targets to the new query.
 
 ### 🌐 Model object
 
@@ -122,9 +122,11 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 ### Effectless indentations
 
-- Multiple connections can be added for a single query, but the related queryTables cannot quote a query already quoted by any other queryTable. It means that whereas a connection can refer to a same query name than an other, the following associated queryTable have to change this name if an other queryTable already refer to it. This one then adds the lowest available index to query name that it refers in a like " i" format. This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
-
 - Importing through Vba add fantom connection _ThisWorkbookDataModel_**i** with i lowest available. This one seems to be deletable without any effect on the displayed table, as well as it is invisible from the `Existing connections` panel.
+
+- Multiple connections can be added for a single query within Vba. Every table have to get its own name as single identifier, so connection tables cannot share the same name even their related connections are reaching the same query. This table name is by default the same as the query name. the lowest available index in a like " i" format is added to this default name to set it as a single name.
+> [!NOTE]
+> This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
 
 ## 🖌 Special behaviors
 
