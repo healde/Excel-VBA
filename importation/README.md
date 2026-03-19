@@ -130,10 +130,6 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 ## 🖌 Special behaviors
 
-### Import with making queryTable that already exist will remove the old one
-
-### cannot refresh Table where connections have been disabled
-
 ### Add query with spaces arround the name
 
 When you rename a query name or when you use it through any process refering to it, start and end spaces should be then escaped. But when you add query within Vba, so you can get multiple same looking queries (which are not). However you should then not be able to rename a query like another nor to confirm a name with spaces arround, and you can refer to a query only if it exists with a conform name.
@@ -141,3 +137,11 @@ When you rename a query name or when you use it through any process refering to 
 ### Forbidden caracters in table name
 
 Workbook tables that would have been created through a connecting process get auto-generated name. If this one present any forbidden caracters such as space or parenthesis, they are replaced by underscore. Unless the name ends by forbidden caracters, these are then escaped.
+
+### Synchronisation connections to query and related connection tables 
+
+While something ...
+
+Import through connection within Vba seems to update the connection table from the query which is related to, at least for the name.
+
+### cannot refresh Table where connections have been disabled
