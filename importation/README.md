@@ -104,7 +104,10 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 > [!TIP]
 > You can change source, target, objects default names, and columns strings through macros. But the list of sheets and number of columns in each table are currently only defined in the macro `Reset Setting` in <ins>ThisWorkbook.cls<ins>.
 
-## In-built indentation and conflicts
+<br>
+<br>
+
+## ➕ In-built indentation and conflicts
 <br>
 
 - _Manualy_ duplicate **sheet** : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available one), else suffix " (2)" is added.
