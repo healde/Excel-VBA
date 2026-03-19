@@ -41,7 +41,7 @@ Dispite remaining belong connections, the model object only display the count of
 
  It appears in the connection tab of the `Queries & Connections` panel, but not in a rigorous way :
  - It never appears at the start, whenever some connection tables exist.
- - It sometimes stucks after that everything have been deleted, and it is removable by loading the last present data as connection out of the model object. Also it still persists as name after that into connections.
+ - It sometimes stucks after that everything have been deleted, and it is removable by loading the last present data as connection out of the model object. Also it still persists as name after that into referred connections collection.
 
 Though the component that I used here and which are described here, the connection tab seems to show only the model object and the workbook tables that have been opened somewhere else in one workbook or another.
 
