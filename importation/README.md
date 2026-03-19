@@ -114,7 +114,7 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 <br>
 
 - _Manualy_ duplicate a **query** : if suffix like "(i)" is found, it is brought to a like " (i)" format with the next available index inside (not lowest available one), else suffix " (2)" is added.
-- Create same name **query** _through Vba_ method will generate an error. The macro made here add +1 to the highest number beyong all first number of each name, and replace it as new index in the actual name. If no number is found, the new index will be 1 and added at the end of the name.      
+- Create same name **query** _through Vba_ method will generate an error. The macro made here add +1 to the highest number among all first number of each name, and replace it as new index in the actual name. If no number is found, the new index will be 1 and added at the end of the name.      
 <br>
 
 - _Manualy_ add **connection** : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
