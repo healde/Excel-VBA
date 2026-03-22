@@ -126,7 +126,7 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 - Multiple connections can be added for a single query within Vba. Every table have to get its own name as single identifier, so connection tables cannot share the same name even their related connections are reaching the same query. This table name is by default the same as the query name. the lowest available index in a like " i" format is added to this default name to set it as a single name.
 > [!NOTE]
-> This case only happen within Vba, because manually adding connection from a query would replace the first connection found related to this query. But it has no effect on the loading data process, since the connection itself still links the right query.
+> This case only happen within Vba, because adding a connection manually does not multiplicate connections to one query (see [below](https://)). But it has no effect on the loading data process, since the connection itself still links the right query.
 
 ## 🖌 Special behaviors
 
@@ -138,10 +138,16 @@ When you rename a query name or when you use it through any process refering to 
 
 Workbook tables that would have been created through a connecting process get auto-generated name. If this one present any forbidden caracters such as space or parenthesis, they are replaced by underscore. Unless the name ends by forbidden caracters, these are then escaped.
 
-### Synchronisation connections to query and related connection tables 
+### Manually add connection, versus doing within VBA
 
-While something ...
+You can see the a hint of how connection have been set. Even by using the same default name than excel would do for setting a connection (depending of your region), the query is actually _refered_ by different sentences in cases of a connection is set _through Vba_ or _by hand_.
 
-Import through connection within Vba seems to update the connection table from the query which is related to, at least for the name.
+For _hand-commands_ is always treated the **first** matching **connection of the list**.
+
+- Add connection manually from a query would so creates new connection, only if none of connections already refers to this query. Else it will simply update the options of the first connection found, such as the existence of connection table in model object, while it refresh with preserving _origin markers_.
+
+- As well, renaming query will only affect the first connection that is refering to it. This action will not snap the link to its related connection table if this one exists in the model object. However, unlike setting connection again, and in case of the connection had _Vba origin marker_, it then losts this marker to reset as a connection made manually with a new name available. Only the connection table's name would stay unchanged. 
+
+- Import through connection within Vba seems to update the connection table from the query which is related to, at least for the name.
 
 ### cannot refresh Table where connections have been disabled
