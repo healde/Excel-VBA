@@ -126,7 +126,7 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 
 - Multiple connections can be added for a single query within Vba. Every table have to get its own name as single identifier, so connection tables cannot share the same name even their related connections are reaching the same query. This table name is by default the same as the query name. the lowest available index in a like " i" format is added to this default name to set it as a single name.
 > [!NOTE]
-> This case only happen within Vba, because adding a connection manually does not multiplicate connections to one query (see [below](https://)). But it has no effect on the loading data process, since the connection itself still links the right query.
+> This case only happen within Vba, because adding a connection manually does not multiplicate connections to one query (see [below](#add-manually)). But it has no effect on the loading data process, since the connection itself still links the right query.
 
 ## 🖌 Special behaviors
 
@@ -140,14 +140,16 @@ Workbook tables that would have been created through a connecting process get au
 
 ### Manually add connection, versus doing within VBA
 
-You can see the a hint of how connection have been set. Even by using the same default name than excel would do for setting a connection (depending of your region), the query is actually _refered_ by different sentences in cases of a connection is set _through Vba_ or _by hand_.
+Connection is set _by hand_ with default name and default description. Both come from the name of the query which the connection support. Name and description are arguments of the connections _`.add` method_, so you can choose to let a different sentence for the description as a hint of _origin_.
 
-For _hand-commands_ is always treated the **first** matching **connection of the list**.
+<a name="add-manually"></a>
+> [!IMPORTANT]
+> For _hand-commands_ is always treated the **first** matching **connection of the list**.
 
-- Add connection manually from a query would so creates new connection, only if none of connections already refers to this query. Else it will simply update the options of the first connection found, such as the existence of connection table in model object, while it refresh with preserving _origin markers_.
+- It means to add connection manually from a query would creates new connection, only if none of connections already refers to this query. Else it updates the options of the first connection found, such as the existence of connection table in model object, while it refresh with preserving original name and description.
 
-- As well, renaming query will only affect the first connection that is refering to it. This action will not snap the link to its related connection table if this one exists in the model object. However, unlike setting connection again, and in case of the connection had _Vba origin marker_, it then losts this marker to reset as a connection made manually with a new name available. Only the connection table's name would stay unchanged. 
+- As well, renaming query manually will only affect the first connection which refers to it. This action will not snap the link to its related connection table if this one exists in the model object. _However_, unlike setting connection again, the affected connection seems to at least partially reset. Indeed name and description both change for the default ones availables, and only the connection table's name would stay unchanged.
 
-- Import through connection within Vba seems to update the connection table from the query which is related to, at least for the name.
+- Import datas through connection within Vba seems to finalise renaming query affectations by updating the connection table's name as well. This behavior is far than updating while it not concerns indented names when lower default name become available again.
 
 ### cannot refresh Table where connections have been disabled
