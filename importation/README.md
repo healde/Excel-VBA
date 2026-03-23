@@ -152,4 +152,7 @@ Connection is set _by hand_ with default name and default description. Both come
 
 - Import datas through connection within Vba seems to finalise renaming query affectations by updating the connection table's name as well. This behavior is far than updating while it not concerns indented names when lower default name become available again.
 
+> [!WARNING]
+> Delete a query manually erase all connections and their tables in the model object, while the connections entirely remain if a query is deleted through Vba.
+
 ### cannot refresh Table where connections have been disabled
