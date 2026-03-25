@@ -147,14 +147,14 @@ Connection is set _by hand_ with default name and default description. Both come
 > [!IMPORTANT]
 > For _hand-commands_ is always treated the **first** matching **connection of the list**.
 
-- It means to add connection manually from a query would creates new connection, only if none of connections already refers to this query. Else it updates the options of the first connection found, such as the existence of connection table in model object, while it refresh with preserving original name and description.
+- It means to add connection manually from a query would creates new connection, only if none of connections already refers to this query. Else it updates the options of the first connection found, such as setting a connection table into Data Model, while it refresh with preserving original name and description.
 
 - As well, renaming query manually will only affect the first connection which refers to it. This action will not snap the link to its related connection table if this one exists in the model object. _However_, unlike setting connection again, the affected connection seems to at least partially reset. Indeed name and description both change for the default ones availables, and only the connection table's name would stay unchanged.
 
 - Import datas through connection within Vba seems to finalise renaming query affectations by updating the connection table's name as well. This behavior is far than updating while it not concerns indented names when lower default name become available again.
 
 > [!WARNING]
-> Delete a query manually erase all connections and their tables in the model object, while the connections entirely remain if a query is deleted through Vba.
+> Delete a query manually erase all connections and their tables bound to Data Model, while the connections entirely remain if a query is deleted through Vba.
 
 ### cannot refresh Table where connections have been disabled
 
