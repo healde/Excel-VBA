@@ -157,4 +157,5 @@ Connection is set _by hand_ with default name and default description. Both come
 > Delete a query manually erase all connections and their tables bound to Data Model, while the connections entirely remain if a query is deleted through Vba.
 
 ### cannot refresh Table where connections have been disabled
-
+- Data table imported from an existing connection needs this connection as much as its internal workbook connection made for it.
+- Whereas data table imported directly from an external source needs so far its workbook connection only.
