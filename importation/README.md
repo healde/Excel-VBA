@@ -108,8 +108,17 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 <br>
 <br>
 
+## Playground
+
+Queries look easier to manage than other objects for collecting datas, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned datas. Even though the mFormula is written in PowerQuery langage and to make it work can require carefull attentions, bacause its syntax is probably less common to popular languages. Its purpose is exclusively to return datas, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least a first part of the whole final instruction set, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
+
+- in Vba : **double quotation marks** are **escaped by themself**. The formula could seem heavier since it can use a lot of them between variables and references.
+- variables can be single words or contain spaces, and there is a special syntax to refer them : _simpleVariable_ and _#"variable Containg Spaces"_
+
+
+
+
 ## ➕ In-built indentation and conflicts
-<br>
 
 - _Manualy_ duplicate **sheet** : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available one), else suffix " (2)" is added.
 <br>
