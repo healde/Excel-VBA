@@ -162,7 +162,7 @@ When you rename a query name or when you use it through any process refering to 
 
 ### Forbidden caracters in table name
 
-Workbook tables that would have been created through a connecting process get auto-generated name. If this one present any forbidden caracters such as space or parenthesis, they are replaced by underscore. Unless the name ends by forbidden caracters, these are then escaped.
+Workbook tables that would have been created through a connecting process get auto-generated name. If this one present any forbidden caracters such as space or parenthesis, they are replaced by underscore. Unless the name ends by forbidden caracters, these are then removed.
 
 ### Manually add connection, versus doing within VBA
 
