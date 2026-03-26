@@ -108,12 +108,28 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 <br>
 <br>
 
-## Playground
+## 🏂 Playground
+A couple of ways to get a full importation process are detailled below
 
+### 🎄 Queries
 Queries look easier to manage than other objects for collecting datas, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned datas. Even though the mFormula is written in PowerQuery langage and to make it work can require carefull attentions, bacause its syntax is probably less common to popular languages. Its purpose is exclusively to return datas, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least a first part of the whole final instruction set, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
 
 - in Vba : **double quotation marks** are **escaped by themself**. The formula could seem heavier since it can use a lot of them between variables and references.
 - variables can be single words or contain spaces, and there is a special syntax to refer them : _simpleVariable_ and _#"variable Containg Spaces"_
+
+mformula = _
+> "let in Table.TransformColumnTypes(Table.PromoteHeaders(Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true){[Name=""sheetOne""]}[Data], [PromoteAllScalars=true]),{{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}})"
+
+is equal to : mformula = _
+> "let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true), " & _ <br>
+>    "DataRef = SourceRef{[Name=""sheetOne""]}[Data], " & _ <br>
+>    "#""Promoted headers"" = Table.PromoteHeaders(DataRef, [PromoteAllScalars=true]), " & _ <br>
+>    "#""Type modified"" = Table.TransformColumnTypes(#""Promoted headers"",{" & _ <br>
+>    "{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}}) _ <br>
+>  in #""Type modified"""
+
+### 🦌 Connections
+Connections is probably the key feature that got me into this full project. Several things got to be confusing for beginners. Furthermore the model and the `.connection` class itself are complexe. I won't describe any component as far as I am not sure about their real role. But it would be a good start to get an overview of Excel capabilities in this scope. Also here are several key points when you attempt to set a connection through Vba.
 
 
 
