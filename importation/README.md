@@ -149,13 +149,21 @@ Connection is set _by hand_ with default name and default description. Both come
 
 - It means to add connection manually from a query would creates new connection, only if none of connections already refers to this query. Else it updates the options of the first connection found, such as setting a connection table into Data Model, while it refresh with preserving original name and description.
 
-- As well, renaming query manually will only affect the first connection which refers to it. This action will not snap the link to its related connection table if this one exists in the model object. _However_, unlike setting connection again, the affected connection seems to at least partially reset. Indeed name and description both change for the default ones availables, and only the connection table's name would stay unchanged.
+- As well, renaming query manually will only affect the first connection which refers to it. This action will not snap the link to its related connection table if this one exists in the model object. _However_, unlike setting connection again, the affected connection seems to at least partially reset. Indeed name and description both change for the default ones availables, and only the connection table's name would stay unchanged. [illustration below.](#first-related-connection-only)
 
-- Import datas through connection within Vba seems to finalise renaming query affectations by updating the connection table's name as well. This behavior is far than updating while it not concerns indented names when lower default name become available again.
+- Import datas through connection within Vba seems to finalise renaming query affectations by updating the connection table's name as well. This behavior is far than updating while it not concerns indented names when lower default name become available again. [illustration below.](#Importing-finalises-renaming)
 
 > [!WARNING]
 > Delete a query manually erase all connections and their tables bound to Data Model, while the connections entirely remain if a query is deleted through Vba.
 
-### cannot refresh Table where connections have been disabled
+### Data tables are unrefreshable if some of their connections have been disabled
 - Data table imported from an existing connection needs this connection as much as its internal workbook connection made for it.
 - Whereas data table imported directly from an external source needs so far its workbook connection only.
+
+# Bank of pictures
+
+#### first related connection only
+<img width="1395" height="1242" alt="D3 - load and unload" src="https://github.com/user-attachments/assets/1d3fd47b-6329-4fdc-a6ec-60a656f24e68" />
+
+#### Importing finalises renaming
+<img width="1213" height="1530" alt="D4 - Rename" src="https://github.com/user-attachments/assets/6d2341be-b511-4c03-9507-d492d6e591e1" />
