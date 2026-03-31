@@ -200,7 +200,7 @@ Connection is set _by hand_ with default name and default description. Both come
 
 # Bank of pictures
 
-[^1]:<img width="100%" height="100%" alt="C - Duplicate Queries" src="https://github.com/user-attachments/assets/7cb3992b-0266-45a6-8dc3-45407f82c618" />
+[^1]:<img alt="C - Duplicate Queries" src="https://github.com/user-attachments/assets/7cb3992b-0266-45a6-8dc3-45407f82c618" />
 
 [^2]:<img width="80%" height="80%" alt="Succesvely load to and unload from  Data Model" src="https://github.com/user-attachments/assets/1d3fd47b-6329-4fdc-a6ec-60a656f24e68" />
 
