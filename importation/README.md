@@ -201,10 +201,10 @@ Connection is set _by hand_ with default name and default description. Both come
 # Bank of pictures
 
 #### auto indentation when renaming
-[^1]:<img width="570" height="287" alt="Duplicate Sheets or Queries" src="https://github.com/user-attachments/assets/7d19f7c7-19d3-47f6-ab73-c068b84c1de3" />
-
+[^1]:<img width="570" height="327" alt="C - Duplicate Queries" src="https://github.com/user-attachments/assets/7cb3992b-0266-45a6-8dc3-45407f82c618" />
+<br><br>
 #### first related connection only
 [^2]:<img width="1395" height="1242" alt="Succesvely load to and unload from  Data Model" src="https://github.com/user-attachments/assets/1d3fd47b-6329-4fdc-a6ec-60a656f24e68" />
-
+<br><br>
 #### Importing finalises renaming
 [^3]:<img width="1213" height="1530" alt="Rename query then import" src="https://github.com/user-attachments/assets/6d2341be-b511-4c03-9507-d492d6e591e1" />
