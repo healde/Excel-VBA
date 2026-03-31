@@ -147,10 +147,10 @@ Connections is probably the key feature that got me into this full project. Seve
 
 - _Manualy_ add **connection** : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
 <a name="connection-through-vba"></a>
-- Multiplicate the **connection** _through Vba_ : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number. If `.name` parameter is fixed to empty string ("") the default name is then "Connection". 
+- Multiplicate the **connection** _through Vba_ : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number. The `.name` parameter can be set to empty string (""), then the default name is "Connection". 
 <br>
 
-- Repeat **importation** _through Vba_ : If names aren't define for `.workbookConnection` and `.displayedName` properties, they are automaticaly defined and indented. Table's name is always "Table_ExternalData_**i**", with i is initiated to 1 and follows the actual highest indentation value. When `.SourceType` is set to _xlSrcModel_, the connection's name follows then the previous format and is "ModelConnection_ExternalData_**i**", while i comes actually from the indentation value of its related data table. However when `.SourceType` is set to _xlSrcExternal_, the new connection follows the same rule than basic connections for their names, [see above](#connection-through-vba).
+- Repeat **importation** _through Vba_ : Names are not automaticaly indented, if they are define in `.workbookConnection` and `.displayedName` properties. Else table's name is always "Table_ExternalData_**i**", with i is initiated to 1 and follows the actual highest indentation value. When `.SourceType` is set to _xlSrcModel_, the connection's name follows the previous format and is set like "ModelConnection_ExternalData_**i**", while i comes actually from the indentation value of its related data table. However when `.SourceType` is set to _xlSrcExternal_, the new connection that is created follows the same rule than basic connections for their names, [see above](#connection-through-vba).
 
 ### Effectless indentations
 
