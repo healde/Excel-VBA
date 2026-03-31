@@ -121,7 +121,7 @@ Queries look easier to manage than other objects for collecting datas, because t
 - in Vba : **double quotation marks** are **escaped by themself**. The formula could seem heavier since it can use a lot of them between variables and references.
 - variables can be single words or contain spaces, and there is a special syntax to refer them : _simpleVariable_ and _#"variable Containg Spaces"_
 
-mformula = "_ 
+mformula = " _ 
 ```fsharp
 let in Table.TransformColumnTypes(Table.PromoteHeaders(Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true){[Name=""sheetOne""]}[Data], [PromoteAllScalars=true]),{{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}})
 ```
@@ -133,7 +133,7 @@ let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null
     "#""Promoted headers"" = Table.PromoteHeaders(DataRef, [PromoteAllScalars=true]), " & _
     "#""Type modified"" = Table.TransformColumnTypes(#""Promoted headers"",{" & _
     "{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}}) _
-  in #""Type modified""
+  in #""Type modified"" _
 ```
 "<br>
 <a name="Connections-follow-up"></a>
