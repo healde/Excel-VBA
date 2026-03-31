@@ -146,11 +146,15 @@ Connections is probably the key feature that got me into this full project. Seve
 <br>
 
 - _Manualy_ add **connection** : Prefix "Query - " is concatenated to query name. It should replace the potential existing one.
-- Multiplicate the **connection** _through Vba_ : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number.
+<a name="connection-through-vba"></a>
+- Multiplicate the **connection** _through Vba_ : It won't replace any existing one. If the connection already exists, it adds right side to the choosen name (and without space) the lowest available index starting from 1, whatever the name is ending by a letter or a number. If `.name` parameter is fixed to empty string ("") the default name is then "Connection". 
+<br>
+
+- Repeat **importation** _through Vba_ : If names aren't define for `.workbookConnection` and `.displayedName` properties, they are automaticaly defined and indented. Table's name is always "Table_ExternalData_**i**", with i is initiated to 1 and follows the actual highest indentation value. When `.SourceType` is set to _xlSrcModel_, the connection's name follows then the previous format and is "ModelConnection_ExternalData_**i**", while i comes actually from the indentation value of its related data table. However when `.SourceType` is set to _xlSrcExternal_, the new connection follows the same rule than basic connections for their names, [see above](#connection-through-vba).
 
 ### Effectless indentations
 
-- Importing through Vba adds fantom connection _ThisWorkbookDataModel_**i** with i lowest available. This one seems to be deletable without any effect on the displayed table, as well as it is invisible from the `Existing connections` panel.
+- Importing from connection through Vba adds fantom connection _ThisWorkbookDataModel_**i** with i lowest available. This one seems to be deletable without any effect on the displayed table, as well as it is invisible from the `Existing connections` panel.
 
 - Multiple connections can be added for a single query within Vba. Every table have to get its own name as single identifier, so connection tables cannot share the same name even their related connections are reaching the same query. This table name is by default the same as the query name. the lowest available index in a like " i" format is added to this default name to set it as a single name.
 > [!NOTE]
@@ -191,7 +195,8 @@ Connection is set _by hand_ with default name and default description. Both come
 
 # Bank of pictures
 
-[back](#In-built-indentation) #### auto indentation when renaming
+#### auto indentation when renaming
+[back](#In-built-indentation) <br>
 <img width="570" height="287" alt="Duplicate Sheets or Queries" src="https://github.com/user-attachments/assets/7d19f7c7-19d3-47f6-ab73-c068b84c1de3" />
 
 #### first related connection only
