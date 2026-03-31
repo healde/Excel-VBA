@@ -191,8 +191,7 @@ Connection is set _by hand_ with default name and default description. Both come
 
 # Bank of pictures
 
-#### auto indentation when renaming
-[back](#In-built-indentation)
+[back](#In-built-indentation) #### auto indentation when renaming
 <img width="570" height="287" alt="Duplicate Sheets or Queries" src="https://github.com/user-attachments/assets/7d19f7c7-19d3-47f6-ab73-c068b84c1de3" />
 
 #### first related connection only
