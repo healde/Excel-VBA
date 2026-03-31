@@ -191,11 +191,14 @@ Connection is set _by hand_ with default name and default description. Both come
 
 # Bank of pictures
 
-#### auto indentation when renaming [back](#In-built-indentation)
+#### auto indentation when renaming
+[back](#In-built-indentation)
 <img width="570" height="287" alt="Duplicate Sheets or Queries" src="https://github.com/user-attachments/assets/7d19f7c7-19d3-47f6-ab73-c068b84c1de3" />
 
-#### first related connection only [back](#renaming-query-manually)
+#### first related connection only
+[back](#renaming-query-manually)
 <img width="1395" height="1242" alt="Succesvely load to and unload from  Data Model" src="https://github.com/user-attachments/assets/1d3fd47b-6329-4fdc-a6ec-60a656f24e68" />
 
-#### Importing finalises renaming [back](#finalise-renaming-query)
+#### Importing finalises renaming
+[back](#finalise-renaming-query)
 <img width="1213" height="1530" alt="Rename query then import" src="https://github.com/user-attachments/assets/6d2341be-b511-4c03-9507-d492d6e591e1" />
