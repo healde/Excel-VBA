@@ -20,6 +20,7 @@ Through this ReadMe and with this program share, I offer a collection of my obse
 A Query made of a formula coded in (PowerQuery) M langage is called through `ActiveSheet.ListObjects.Add` method to generate a data table from elsewhere. It is possible to get directly the datas, or to manage a connection with the distant workbook before getting the datas. But in this last case, documentation is especialy confusing and _differences_ emerge between _Vba functions_ and _manual process_.
 
 The distant workbook is written in the **M formula** that transport the query.
+[follow up](#Queries-follow-up)
 
 ### 🟢 Connection ability
 
@@ -32,6 +33,7 @@ The process described below only use connections intern to the workbook. But dat
 
 > [!TIP]
 > From this window, it is possible to manually (re)load both connections or tables, but it first duplicates the **query** source **into a new one**, and the new workbook table then targets to the new query.
+[follow up](#Connections-follow-up)
 
 ### 🌐 Data Model
 
@@ -112,6 +114,7 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 ## 🏂 Playground
 A couple of ways to get a full importation process are detailled below
 
+<a name="Queries-follow-up"></a>
 ### 🎄 Queries
 Queries look easier to manage than other objects for collecting datas, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned datas. Even though the mFormula is written in PowerQuery langage and to make it work can require carefull attentions, bacause its syntax is probably less common to popular languages. Its purpose is exclusively to return datas, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least a first part of the whole final instruction set, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
 
@@ -119,7 +122,7 @@ Queries look easier to manage than other objects for collecting datas, because t
 - variables can be single words or contain spaces, and there is a special syntax to refer them : _simpleVariable_ and _#"variable Containg Spaces"_
 
 mformula = _
-> "let in Table.TransformColumnTypes(Table.PromoteHeaders(Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true){[Name=""sheetOne""]}[Data], [PromoteAllScalars=true]),{{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}})"
+` "let in Table.TransformColumnTypes(Table.PromoteHeaders(Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true){[Name=""sheetOne""]}[Data], [PromoteAllScalars=true]),{{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}})"
 
 is equal to : mformula = _
 > "let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true), " & _ <br>
@@ -127,8 +130,9 @@ is equal to : mformula = _
 >    "#""Promoted headers"" = Table.PromoteHeaders(DataRef, [PromoteAllScalars=true]), " & _ <br>
 >    "#""Type modified"" = Table.TransformColumnTypes(#""Promoted headers"",{" & _ <br>
 >    "{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}}) _ <br>
->  in #""Type modified"""
+>  in #""Type modified""" `
 
+<a name="Connections-follow-up"></a>
 ### 🦌 Connections
 Connections is probably the key feature that got me into this full project. Several things got to be confusing for beginners. Furthermore the model and the `.connection` class itself are complexe. I won't describe any component as far as I am not sure about their real role. But it would be a good start to get an overview of Excel capabilities in this scope. Also here are several key points when you attempt to set a connection through Vba.
 
@@ -138,7 +142,7 @@ Connections is probably the key feature that got me into this full project. Seve
 <a name="In-built-indentation"></a>
 ## ➕ In-built indentation and conflicts
 
-- _Manualy_ duplicate **sheet** : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available one), else suffix " (2)" is added [illustration below](#auto-indentation-when-renaming).
+- _Manualy_ duplicate **sheet** : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available one), else suffix " (2)" is added [illustration below](#auto-indentation-when-renaming).[^see]
 <br>
 
 - _Manualy_ duplicate a **query** : if suffix like "(i)" is found, it is brought to a like " (i)" format with the next available index inside (not lowest available one), else suffix " (2)" is added [illustration below](#auto-indentation-when-renaming).
@@ -205,4 +209,4 @@ Connection is set _by hand_ with default name and default description. Both come
 
 #### Importing finalises renaming
 [back](#finalise-renaming-query)
-<img width="1213" height="1530" alt="Rename query then import" src="https://github.com/user-attachments/assets/6d2341be-b511-4c03-9507-d492d6e591e1" />
+[^see]:<img width="1213" height="1530" alt="Rename query then import" src="https://github.com/user-attachments/assets/6d2341be-b511-4c03-9507-d492d6e591e1" />
