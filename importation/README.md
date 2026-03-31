@@ -85,7 +85,7 @@ This is how I displayed them on my fluent ribbon
   - `Connection w. DataModel` : Make directly the new connection suitable to import by loading its reference into Data Model
 
 ** **    
-- **`Management`** : This routine can be implemented after instructions in Macros setting connections or before instructions in Macros importing data, both for control or preprocessing. It wraps the sub routines below in the same order :
+- **`Auto Management`** : This routine can be implemented after instructions in Macros setting connections or before instructions in Macros importing data, both for control or preprocessing. It wraps the sub routines below in the same order :
   - `Show  Connections`
   - `Clean Connections`
   - `Show  listObjects`
@@ -95,8 +95,8 @@ This is how I displayed them on my fluent ribbon
   - `Reset settings`     : affect only empty strings
   - `Change settings`
   - `Change columns`
-  - `Set Management`     : Set which macros is activated in `Management`
-  - `Execute Management`
+  - `Set Management`     : Set which macros is activated in `Auto Management`
+  - `Get Management`
 
 ### 🎚 About using global variables
 
