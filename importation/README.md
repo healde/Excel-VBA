@@ -2,24 +2,44 @@
 # Figure out connections and basic data transferts between Excel files
 
 ## 🎼 Why ? 
-It is one of the things that I wanted to add to my "how to in Vba" skills. But it appears less as a mild option than I though and the documentation was difficult for me to get through, as the beginer as I am. So I decide to make a full program for looking over general process and understanding the behaviors of the differents functionality around this subject.
+It is one of the things that I wanted to add to my "how to in Vba" skills. But it appears less as a mild option than I though and the documentation was difficult for me to get through, as the beginer as I am. So I decide to make a program for looking over general process and understanding the behaviors of the differents functionality around this subject.
 ### starting line
 Without finding as much as solutions than I expected in forums, I recorded Macro ⭕ over manual process, and get by chance more than one method. I cleaned them out of the records context 🧹 and tried to make them work as much as I can.
 ### how then
 After having composed a whole set of commands to run some tests, I also asked for help to AI and it let me know about some _internal process_ in the Microsoft environment. It has then followed me in my course, while I pursuid some running tests and the development of **control process**.
 
 ## 🎶 So
-Through this ReadMe and with this program share, I offer a collection of my observations and an attempt of supplement to the documentation.
+Through this ReadMe and with this program share, I try to offer a collection of my observations and an attempt of supplement to the documentation.
 
 <br>
 <br>
 <br>
 
-### 🟠 Query structure
+## Queries and providers
+
+As first step, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now **two providers** which offer similar capabilities for fetching datas through one excel file to an other. In any case they are in charge of managing a _query_ and ensure the _connection_ to a source for importing the right datas. Each provider get a list of source type which are possible to connect with. 
+
+### Connections and Data Tables
+
+Importing datas into a displayed table is a step behind processing a connection. One of first thing AI help me to get is that connections can be established differently depending of the provider used and of the creation way (mannually or within Vba).
+
+### Let connections
+
+In the **`connection string`**, we declare the provider and the source. They must be compatible. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested datas.
+
+### 
+
+
+
+### Generic query structure
+
+
+
+### 🟠 M-Query structure
 
 A Query made of a formula coded in (PowerQuery) M langage is called through `ActiveSheet.ListObjects.Add` method to generate a data table from elsewhere. It is possible to get directly the datas, or to manage a connection with the distant workbook before getting the datas. But in this last case, documentation is especialy confusing and _differences_ emerge between _Vba functions_ and _manual process_.
 
-The distant workbook is written in the **M formula** that transport the query.
+The distant workbook (external source) is written in the **M formula** that transport the query.
 [follow up](#Queries-follow-up)
 
 ### 🟢 Connection ability
