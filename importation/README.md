@@ -21,13 +21,14 @@ As first step, I builded the code over only one provider. it is near the end tha
 
 ### Connections and Data Tables
 
-Importing datas into a displayed table is a step behind processing a connection. One of first thing AI help me to get is that connections can be established differently depending of the provider used and of the creation way (mannually or within Vba).
+Importing datas into a displayed table is one step after processing a connection. One of first thing AI helped me to get right is that connections can be established differently depending of the provider or the creation process (mannually or within Vba). Different parts exist in an Excel file for storing metadatas. Providers are not using unique same metadatas, neither process does. Plus process may miss to access to some internal component.
 
 ### Let connections
 
 In the **`connection string`**, we declare the provider and the source. They must be compatible. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested datas.
 
 ### 
+
 
 
 
