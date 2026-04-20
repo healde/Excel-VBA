@@ -30,7 +30,7 @@ One of first thing AI helped me to get right is that different parts exist in an
 
 In the **`connection string`**, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested datas.
 
-In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some datas, like a SQL command. But as I understood AI's course, SQL cannot be executed by any Excel file's system, as it is the case in this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the datas fetched from a distant file. If a filter must be apply on large scale tables from Excel file, it is then wiser for to use the provider dedicated to Power Query for better performances.
+In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some datas, like a SQL command. But as I understood AI's course, SQL cannot be executed by any of Excel file's system itself, as it is the case in this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the datas fetched from a distant file. If a filter must be apply on large scale tables from Excel file, it is then wiser for to use the provider dedicated to Power Query for better performances.
 
 ### 🟠 M-Query structure
 
