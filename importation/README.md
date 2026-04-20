@@ -20,25 +20,17 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 As first step, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now **two providers** which offer similar capabilities for fetching datas through one excel file to an other. In any case they are in charge of managing a _query_ and ensure the _connection_ to a source for importing the right datas. Each provider get a list of source type which are possible to connect with. 
 
 > [!NOTE]
-> **Connections and Data Tables** <br>
-> Importing datas into a displayed table is one step after processing a connection. 
+> **Connections and Data Tables** : Importing datas into a displayed table is a complet other step after processing a connection. 
 
 ### Main causes of failure
 
-One of first thing AI helped me to get right is that connections can be established differently depending of the provider or the creation process (mannually or within Vba). Different parts exist in an Excel file for storing metadatas and that is how connections may look differents from a provider to an other. Also over Excel Object Model used by Vba, not all properties are used through the `workbookConnection` part and process differ when parameters changing. 
+One of first thing AI helped me to get right is that different parts exist in an Excel file for storing metadatas. As well, `workbookConnection` object from Excel Object Model is complexe and different parts of it can be used for a single purpose. It results that connections can be declared and also appear differently depending of the provider or the creation of the process (mannually or within Vba).
 
-### Let connections
+### Let connections within Vba
 
-In the **`connection string`**, we declare the provider and the source. They must be compatible. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested datas.
+In the **`connection string`**, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested datas.
 
-### 
-
-
-
-
-### Generic query structure
-
-
+In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some datas, like a SQL command. But as I understood AI's course, SQL cannot be executed by any Excel file's system, as it is the case in this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the datas fetched from a distant file. If a filter must be apply on large scale tables from Excel file, it is then wiser for to use the provider dedicated to Power Query for better performances.
 
 ### 🟠 M-Query structure
 
