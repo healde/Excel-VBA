@@ -19,9 +19,13 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 As first step, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now **two providers** which offer similar capabilities for fetching datas through one excel file to an other. In any case they are in charge of managing a _query_ and ensure the _connection_ to a source for importing the right datas. Each provider get a list of source type which are possible to connect with. 
 
-### Connections and Data Tables
+> [!NOTE]
+> **Connections and Data Tables** <br>
+> Importing datas into a displayed table is one step after processing a connection. 
 
-Importing datas into a displayed table is one step after processing a connection. One of first thing AI helped me to get right is that connections can be established differently depending of the provider or the creation process (mannually or within Vba). Different parts exist in an Excel file for storing metadatas. Providers are not using unique same metadatas, neither process does. Plus process may miss to access to some internal component.
+### Main causes of failure
+
+One of first thing AI helped me to get right is that connections can be established differently depending of the provider or the creation process (mannually or within Vba). Different parts exist in an Excel file for storing metadatas and that is how connections may look differents from a provider to an other. Also over Excel Object Model used by Vba, not all properties are used through the `workbookConnection` part and process differ when parameters changing. 
 
 ### Let connections
 
