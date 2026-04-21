@@ -17,26 +17,25 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 ## Queries and providers
 
-As first step, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now **two providers** which offer similar capabilities for fetching datas through one excel file to an other. In any case they are in charge of managing a _query_ and ensure the _connection_ to a source for importing the right datas. Each provider get a list of source type which are possible to connect with. 
+As first step, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now **two providers** which offer similar capabilities for fetching data through one excel file to an other. In any case they are in charge of managing a _query_ and ensure the _connection_ to a source for importing the right data. Each provider get a list of source type which are possible to connect with. 
 
 > [!NOTE]
-> **Connections and Data Tables** : Importing datas into a displayed table is a complet other step after processing a connection. 
+> **Connections and Data Tables** : Importing data into a displayed table is a complet other step after processing a connection. 
 
 ### Main causes of failure
 
-One of first thing AI helped me to get right is that different parts exist in an Excel file for storing metadatas. As well, `workbookConnection` object from Excel Object Model is complexe and different parts of it can be used for a single purpose. It results that connections can be declared and also appear differently depending of the provider or the creation of the process (mannually or within Vba).
+One of first thing AI helped me to get right is that different parts exist in an Excel file for storing metadata (sometimes equivalently). As well, `workbookConnection` object from Excel Object Model is complexe and different parts of it can be used for a single purpose. It results that connections can be declared and appear differently depending of the provider or the creation of the process (mannually or within Vba).
+
+---------------------- It  is called through `ActiveSheet.ListObjects.Add` method to generate a data table from elsewhere is possible to get directly the data, or to manage a connection with the distant workbook before getting the data. But in this last case, documentation is especialy confusing and _differences_ emerge between _Vba functions_ and _manual process_.
+
 
 ### Let connections within Vba
 
-In the **`connection string`**, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested datas.
+In the **`connection string`** property, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested data.
 
-In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some datas, like a SQL command. But as I understood AI's course, SQL cannot be executed by any of Excel file's system itself, as it is the case in this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the datas fetched from a distant file. If a filter must be apply on large scale tables from Excel file, it is then wiser for to use the provider dedicated to Power Query for better performances.
+In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some data, like a SQL command. But as I understood AI's course, SQL cannot be executed by the Excel file's system itself, as it is the working context for this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the data fetched from a distant file. 
 
-### 🟠 M-Query structure
-
-A Query made of a formula coded in (PowerQuery) M langage is called through `ActiveSheet.ListObjects.Add` method to generate a data table from elsewhere. It is possible to get directly the datas, or to manage a connection with the distant workbook before getting the datas. But in this last case, documentation is especialy confusing and _differences_ emerge between _Vba functions_ and _manual process_.
-
-The distant workbook (external source) is written in the **M formula** that transport the query.
+If a filter must be applied on large scale tables from Excel file, it is then wiser to use the provider that is dedicated to **Power Query** for getting better performances. We process with queries made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba.
 [follow up](#Queries-follow-up)
 
 ### 🟢 Connection ability
@@ -54,7 +53,7 @@ The process described below only use connections intern to the workbook. But dat
 
 ### 🌐 Data Model
 
-It is actually such like a proper place in Excel that let manipulating some kind of connections and datas in certains ways. It also remains among connections inside the `Existing connections` _window_, but the Data Model only displays in there the count of connection tables. This is why _ThisWorkbookDataModel_ connection is not directly deletable, neither manually nor by using Vba.
+It is actually such like a proper place in Excel that let manipulating some kind of connections and data in certains ways. It also remains among connections inside the `Existing connections` _window_, but the Data Model only displays in there the count of connection tables. This is why _ThisWorkbookDataModel_ connection is not directly deletable, neither manually nor by using Vba.
 
 > [!NOTE]
 > Unlike some default names generated by Excel, the name _ThisWorkbookDataModel_ is the same whatever the region langage set for the user.
@@ -133,7 +132,7 @@ A couple of ways to get a full importation process are detailled below
 
 <a name="Queries-follow-up"></a>
 ### 🎄 Queries
-Queries look easier to manage than other objects for collecting datas, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned datas. Even though the mFormula is written in PowerQuery langage and to make it work can require carefull attentions, bacause its syntax is probably less common to popular languages. Its purpose is exclusively to return datas, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least a first part of the whole final instruction set, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
+Queries look easier to manage than other objects for collecting data, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned data. Even though the mFormula is written in PowerQuery langage and to make it work can require carefull attentions, bacause its syntax is probably less common to popular languages. Its purpose is exclusively to return data, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least a first part of the whole final instruction set, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
 
 - in Vba : **double quotation marks** are **escaped by themself**. The formula could seem heavier since it can use a lot of them between variables and references.
 - variables can be single words or contain spaces, and there is a special syntax to refer them : _simpleVariable_ and _#"variable Containg Spaces"_
@@ -206,7 +205,7 @@ Connection is set _by hand_ with default name and default description. Both come
 
 - As well, renaming query manually will only affect the first connection which refers to it. This action will not snap the link to its related connection table if this one exists in the model object. _However_, unlike setting connection again, the affected connection seems to at least partially reset. Indeed name and description both change for the default ones availables, and only the connection table's name would stay unchanged[^2].
 
-- However, importing datas through connection within Vba seems to finalise renaming query affectations by updating the connection table's name as well. This behavior is far than updating while it not concerns indented names when lower default name become available again[^3].
+- However, importing data through connection within Vba seems to finalise renaming query affectations by updating the connection table's name as well. This behavior is far than updating while it not concerns indented names when lower default name become available again[^3].
 
 > [!WARNING]
 > Delete a query manually erase all connections and their tables bound to Data Model, while the connections entirely remain if a query is deleted through Vba.
