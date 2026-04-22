@@ -19,24 +19,16 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now **two providers** which offer similar capabilities for fetching data through one excel file to an other. A provider is in charge of managing a _query_ and ensure the _connection_ to a source for importing the right data. Each provider get a list of source type which are possible to connect with. 
 
+see [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype)
+
 > [!NOTE]
 > **Connections and Data Tables** : Importing data into a displayed table is a complet other step after processing a connection. 
 
 ### Main causes of failure
 
-One of first thing AI helped me to get right is that different parts exist in an Excel file for storing metadata (sometimes equivalently). As well, `workbookConnection` object from Excel Object Model is complexe and different parts of it can be used for a single purpose. It results that connections can be declared and appear differently depending of the provider or the creation of the process (mannually or within Vba).
+One of first thing AI helped me to get right is that different parts exist in an Excel file for storing metadata (sometimes equivalently). As well, `.workbookConnection` object from Excel Object Model is complexe and different parts of it can be used for a single purpose. It results that connections can be declared and appear differently depending of the provider or the creation of the process (mannually or within Vba).
 
----------------------- It  is called through `ActiveSheet.ListObjects.Add` method to generate a data table from elsewhere is possible to get directly the data, or to manage a connection with the distant workbook before getting the data. But in this last case, documentation is especialy confusing and _differences_ emerge between _Vba functions_ and _manual process_.
-
-
-### Let connections within Vba
-
-In the **`connection string`** property, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested data.
-
-In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some data, like a SQL command. But as I understood AI's course, SQL cannot be executed by the Excel file's system itself, as it is the working context for this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the data fetched from a distant file. 
-
-If a filter must be applied on large scale tables from Excel file, it is then wiser to use the provider that is dedicated to **Power Query** for getting better performances. We process with queries made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba.
-[follow up](#Queries-follow-up)
+Connections is probably the key feature that got me into this full project, and several things got to be confusing for beginners as the data model system and the `.workbookConnection` class itself are complexe. I won't describe any component as far as I am not sure about their real role. But it would be a good start to get an overview of Excel capabilities in this scope. Also here are several key points when you attempt to set a connection through Vba.
 
 ### 🟢 Connection ability
 
@@ -63,6 +55,14 @@ It is actually such like a proper place in Excel that let manipulating some kind
  - It sometimes stucks after that everything have been deleted, and it is removable by loading the last present data as connection out of the model object. Also it still persists as name after that into referred connections collection.
 
 Through this panel that I used and describe here, the connection tab seems to show only the Data Model object and the workbook tables that would have been opened again somewhere else in one workbook or another.
+
+### 🟠 Importing 
+
+`ActiveSheet.ListObjects.Add` method let generate a table from data.
+It is possible to get directly the data, or to manage a connection with the distant workbook before getting the data. 
+see [XlListObjectSourceType enumeration](https://learn.microsoft.com/en-us/office/vba/api/excel.xllistobjectsourcetype)
+But in this last case, documentation is especialy confusing and _differences_ emerge between _Vba functions_ and _manual process_.
+
 
 ## 🎨 Panel
 
@@ -131,7 +131,8 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 A couple of ways to get a full importation process are detailled below
 
 <a name="Queries-follow-up"></a>
-### 🎄 Queries
+### 🎄 Queries with m-Formulas
+
 Queries look easier to manage than other objects for collecting data, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned data. Even though the mFormula is written in PowerQuery langage and to make it work can require carefull attentions, bacause its syntax is probably less common to popular languages. Its purpose is exclusively to return data, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least a first part of the whole final instruction set, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
 
 - in Vba : **double quotation marks** are **escaped by themself**. The formula could seem heavier since it can use a lot of them between variables and references.
@@ -153,8 +154,15 @@ let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null
 ```
 "<br>
 <a name="Connections-follow-up"></a>
-### 🦌 Connections
-Connections is probably the key feature that got me into this full project. Several things got to be confusing for beginners. Furthermore the model and the `.connection` class itself are complexe. I won't describe any component as far as I am not sure about their real role. But it would be a good start to get an overview of Excel capabilities in this scope. Also here are several key points when you attempt to set a connection through Vba.
+### 🦌 Let connections within Vba
+
+In the **`connection string`** property, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested data.
+see [XlCmdType enumeration](https://learn.microsoft.com/en-us/office/vba/api/excel.xlcmdtype)
+
+In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some data, like a SQL command. But as I understood AI's course, SQL cannot be executed by the Excel file's system itself, as it is the working context for this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the data fetched from a distant file. 
+
+If a filter must be applied on large scale tables from Excel file, it is then wiser to use the provider that is dedicated to **Power Query** for getting better performances. We process with queries made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba.
+[follow up](#Queries-follow-up)
 
 
 
