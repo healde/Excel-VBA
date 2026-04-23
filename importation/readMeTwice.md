@@ -22,28 +22,11 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other : _MashUp.OleDB.1_ and _ACE_.
 <br>
 
-A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
+A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. Each provider get a **list of source type** which are possible to connect with.
 
 > [!NOTE]
 > Retrieving imported data into a displayed table is a complet other step after processing a connection, even main functionalities use two in one process.
 
-The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. Each provider get a **list of source type** which are possible to connect with.
-<br>
-<br>
-Source : [Vba XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype)
-| Name | Value | Description |
-| :--- | :---: | --- |
-| xlConnectionTypeOLEDB | 1 | OLEDB |
-| xlConnectionTypeODBC | 2 | ODBC |
-| xlConnectionTypeXMLMAP | 3 | XML MAP |
-| xlConnectionTypeTEXT | 4 | Text |
-| xlConnectionTypeWEB | 5 | Web |
-| xlConnectionTypeDATAFEED | 6 | Data Feed |
-| xlConnectionTypeMODEL | 7 | PowerPivot Model |
-| xlConnectionTypeWORKSHEET | 8 | Worksheet |
-| xlConnectionTypeNOSOURCE | 9 | No source |
-
-ACE and MashUp both create connection of type 1 corresponding to <ins>OleDB</ins>
 
 
 
@@ -110,6 +93,69 @@ For a confortable experience, it is relevant to let `Reset Setting` at the begin
 <br>
 <br>
 
+## 🏂 Playground
+A couple of ways to get a full importation process are detailled below
+
+<a name="Queries-follow-up"></a>
+### 🎄 Queries with m-Formulas
+
+From Vba perspective, queries look easier to manage than other objects for collecting, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned data. Even though, make mFormula works may require special attention while M langage's syntax is probably less common to popular languages. Its purpose is exclusively to return data, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least one first part from the whole set of final instructions, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
+
+- in Vba : **double quotation marks** are **escaped by themself**. The formula could seem heavier since it can use a lot of them between variables and references.
+- variables can be single words or contain spaces, and there is a special syntax to refer them : _simpleVariable_ and _#"variable Containg Spaces"_
+
+mformula = " _ 
+```fsharp
+let in Table.TransformColumnTypes(Table.PromoteHeaders(Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true){[Name=""sheetOne""]}[Data], [PromoteAllScalars=true]),{{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}})
+```
+"<br>
+is equal to : mformula = "_
+```fsharp
+let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null, true), " & _
+    "DataRef = SourceRef{[Name=""sheetOne""]}[Data], " & _
+    "#""Promoted headers"" = Table.PromoteHeaders(DataRef, [PromoteAllScalars=true]), " & _
+    "#""Type modified"" = Table.TransformColumnTypes(#""Promoted headers"",{" & _
+    "{""index"", type text}, {""label"", type text}, {""info"", type text}, {""refer"", type text}}) _
+  in #""Type modified"" _
+```
+"<br>
+<a name="Connections-follow-up"></a>
+### 🦌 Let connections within Vba
+
+In the **`connection string`** property, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested data.
+<br>
+<br>
+see [XlCmdType enumeration](https://learn.microsoft.com/en-us/office/vba/api/excel.xlcmdtype)
+| Name | Value | Description |
+| :--- | :---: | --- |
+| xlCmdCube | 1 | Contains a cube name for an OLAP data source. |
+| xlCmdDAX | 8 | Contains a Data Analysis Expressions (DAX) formula. |
+| xlCmdDefault | 4 | Contains command text that the OLE DB provider understands. |
+| xlCmdExcel | 7 | Contains an Excel formula. |
+| xlCmdList | 5 | Contains a pointer to list data. |
+| xlCmdSql | 2 | Contains an SQL statement. |
+| xlCmdTable | 3 | Contains a table name for accessing OLE DB data sources. |
+| xlCmdTableCollection | 6 | Contains the name of a table collection. |
+
+<br>
+
+The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. See [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype).
+| Name | Value | Description |
+| :--- | :---: | --- |
+| xlConnectionTypeOLEDB | 1 | OLEDB |
+| xlConnectionTypeODBC | 2 | ODBC |
+| xlConnectionTypeXMLMAP | 3 | XML MAP |
+| xlConnectionTypeTEXT | 4 | Text |
+| xlConnectionTypeWEB | 5 | Web |
+| xlConnectionTypeDATAFEED | 6 | Data Feed |
+| xlConnectionTypeMODEL | 7 | PowerPivot Model |
+| xlConnectionTypeWORKSHEET | 8 | Worksheet |
+| xlConnectionTypeNOSOURCE | 9 | No source |
+
+ACE and MashUp both create connection of type 1 corresponding to <ins>OleDB</ins>
+
+<br>
+<br>
 ## ➕ In-built indentation and conflicts
 
 - _Manualy_ duplicate **sheet** : if suffix like "(i)" is found, it is filled with the next available index inside (not lowest available one), else suffix " (2)" is added[^1].
