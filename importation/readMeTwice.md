@@ -19,7 +19,12 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 ### Queries and providers
 
-In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other. <br>
+In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other. 
+<br>
+| Provider |
+| --- |
+| MashUp.OleDB.1 |
+| ACE. |
 <br>
 A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
 
@@ -42,7 +47,7 @@ Source : [Vba XlConnectionType enumeration](https://learn.microsoft.com/en-gb/of
 | xlConnectionTypeWORKSHEET | 8 | Worksheet |
 | xlConnectionTypeNOSOURCE | 9 | No source |
 
-ACE and MashUp create connection of type 1 corresponding to OleDB
+ACE and MashUp both create connection of type 1 corresponding to <ins>OleDB</ins>
 
 
 
