@@ -19,7 +19,9 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 ### Queries and providers
 
-In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one excel file to an other. A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
+In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other. <br>
+<br>
+A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
 
 > [!NOTE]
 > **Connections and Data Tables** : Getting any imported data into a displayed table is a complet other step after processing a connection, even main functionnalities use two in one process.
