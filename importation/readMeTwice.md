@@ -29,7 +29,7 @@ In the inital phaze, I builded the code over only one provider. it is near the e
 A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
 
 > [!NOTE]
-> **Connections and Data Tables** : Getting any imported data into a displayed table is a complet other step after processing a connection, even main functionnalities use two in one process.
+> **Connections and Data Tables** : Retrieving any imported data into a displayed table is a complet other step after processing a connection, even main functionnalities use two in one process.
 
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. Each provider get a **list of source type** which are possible to connect with.
 <br>
