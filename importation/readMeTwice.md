@@ -15,6 +15,21 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 <br>
 <br>
 
+## Excel Basis
+
+### Queries and providers
+
+In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one excel file to an other. A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
+
+> [!NOTE]
+> **Connections and Data Tables** : Getting any imported data into a displayed table is a complet other step after processing a connection, even main functionnalities use two in one process.
+
+The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. Each provider get a **list of source type** which are possible to connect with.
+see [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype) 
+ACE and MashUp create connection of type 1 corresponding to OleDB
+
+
+
 ## 🎨 Panel
 
 **In this program**, I purpose to try _alternative_ macro to main _built-in functions_, plus some for _usefull automated routine_ like showing or cleaning. I wrapped some of these auxiliary routines into one macro called `Management`, in which you can desactivate routines that would be out of interest for chosen tests. Indeed this one is then called as a preprocess routine as well.
