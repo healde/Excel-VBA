@@ -27,7 +27,21 @@ A provider is in charge of managing a _query_ and **ensure the _connection_** to
 > **Connections and Data Tables** : Getting any imported data into a displayed table is a complet other step after processing a connection, even main functionnalities use two in one process.
 
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. Each provider get a **list of source type** which are possible to connect with.
-see [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype) 
+<br>
+<br>
+Source : [Vba XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype)
+| Name | Value | Description |
+| :--- | :---: | --- |
+| xlConnectionTypeOLEDB | 1 | OLEDB |
+| xlConnectionTypeODBC | 2 | ODBC |
+| xlConnectionTypeXMLMAP | 3 | XML MAP |
+| xlConnectionTypeTEXT | 4 | Text |
+| xlConnectionTypeWEB | 5 | Web |
+| xlConnectionTypeDATAFEED | 6 | Data Feed |
+| xlConnectionTypeMODEL | 7 | PowerPivot Model |
+| xlConnectionTypeWORKSHEET | 8 | Worksheet |
+| xlConnectionTypeNOSOURCE | 9 | No source |
+
 ACE and MashUp create connection of type 1 corresponding to OleDB
 
 
