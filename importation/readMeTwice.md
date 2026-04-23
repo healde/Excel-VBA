@@ -19,17 +19,13 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 ### Queries and providers
 
-In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other. 
+In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other : _MashUp.OleDB.1_ and _ACE_.
 <br>
-| Provider |
-| --- |
-| MashUp.OleDB.1 |
-| ACE. |
 
 A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
 
 > [!NOTE]
-> **Connections and Data Tables** : Retrieving imported data into a displayed table is a complet other step after processing a connection, even main functionalities use two in one process.
+> Retrieving imported data into a displayed table is a complet other step after processing a connection, even main functionalities use two in one process.
 
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. Each provider get a **list of source type** which are possible to connect with.
 <br>
