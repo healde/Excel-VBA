@@ -25,7 +25,7 @@ In the inital phaze, I builded the code over only one provider. it is near the e
 | --- |
 | MashUp.OleDB.1 |
 | ACE. |
-<br>
+
 A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. 
 
 > [!NOTE]
