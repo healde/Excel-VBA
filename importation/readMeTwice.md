@@ -17,7 +17,7 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 ## Excel Basis
 
-### Queries and providers
+### Providers for transferts between Excel files
 
 In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other : _MashUp.OleDB.1_ and _ACE_.
 <br>
