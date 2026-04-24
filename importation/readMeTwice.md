@@ -119,8 +119,24 @@ let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null
   in #""Type modified"" _
 ```
 "<br>
+
+> [!IMPORTANT]
+> M-Queries are used with _mashUp_ Provider
+
 <a name="Connections-follow-up"></a>
 ### 🦌 Let connections within Vba
+
+.workbookConnection object is complexe and different parts of it can be used for a single purpose besides its caracteristical values.
+documentation is mingled about _adding_ methods, and AI let an explaination for the following observations : 
+- in vba documentation, only exists .add and seems to describe .add2 method
+- however, both .add and .add2 seem to be correctly described in .NET/interop documentation
+- info in vba shows ...
+
+> [!NOTE]
+> ...
+
+workbook.workbookConnections.add2 will add the connection to the data Model and ....
+
 
 In the **`connection string`** property, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested data.
 <br>
@@ -138,6 +154,11 @@ see [XlCmdType enumeration](https://learn.microsoft.com/en-us/office/vba/api/exc
 | xlCmdTableCollection | 6 | Contains the name of a table collection. |
 
 <br>
+
+In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some data, like a SQL command. But as I understood AI's course, SQL cannot be executed by the Excel file's system itself, as it is the working context for this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the data fetched from a distant file. 
+
+If a filter must be applied on large scale tables from Excel file, it is then wiser to use the provider that is dedicated to **Power Query** for getting better performances. We process with queries made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba.
+[follow up](#Queries-follow-up)
 
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. See [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype).
 | Name | Value | Description |
