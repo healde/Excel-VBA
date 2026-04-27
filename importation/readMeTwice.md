@@ -17,9 +17,9 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 
 ## Excel Basis
 
-### Providers for transferts between Excel files
+### 🌍 Providers for transferts between Excel files
 
-In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other : _MashUp.OleDB.1_ and _ACE_.
+In the inital phaze, I builded the code over only one provider. it is near the end that I looked for other options, and this program present now <ins>two providers</ins> which offer similar capabilities for fetching data through one <ins>excel file</ins> to an other : _Microsoft.Mashup.OleDb.1_ and _Microsoft.ACE.OLEDB.12.0_.
 <br>
 
 A provider is in charge of managing a _query_ and **ensure the _connection_** to a source for importing the right data. Each provider get a **list of source type** which are possible to connect with.
@@ -30,6 +30,10 @@ A provider is in charge of managing a _query_ and **ensure the _connection_** to
 ### 🟠 Queries
 
 they will depend of provider ....
+
+
+In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some data, like a SQL command. But as I understood AI's course, SQL cannot be executed by the Excel file's system itself, as it is the working context for this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the data fetched from a distant file. 
+ We process with queries made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba.
 
 ### 🟢 Connection ability
 
@@ -44,7 +48,7 @@ The process described below only use connections intern to the workbook. But dat
 > From this window, it is possible to manually (re)load both connections or tables, but it first duplicates the **query** source **into a new one**, and the new workbook table then targets to the new query.
 [follow up](#Connections-follow-up)
 
-### 🌐 Data Model 
+### 🌐 Data Model
 
 It is holding some kind of proper place in Excel for storing connections and manipulating data. It also remains among classic connections inside the `Existing connections` _window_, but only for displaying in there the count of connection tables that belong to it. This is why _ThisWorkbookDataModel_ connection is not directly deletable, neither manually nor by using Vba.
 
@@ -79,8 +83,7 @@ This is how I displayed them on my fluent ribbon
 ### 🖼 Macro list and implementation
 
 > [!IMPORTANT]
-> Before using any connection through Vba, you must activate the provider ***Microsoft.Mashup.OleDB.1*** by opening once :
-> - `Data` _tab_  >  `Queries & connections` _panel_
+> 
 
 - **Switch to table** (not related to the other actions) :
   - `Create Table` : Turn the active worksheet's used range into a table set as listObject
@@ -133,6 +136,11 @@ A couple of ways to get a full importation process are detailled below
 <a name="Queries-follow-up"></a>
 ### 🎄 Queries with m-Formulas
 
+> [!IMPORTANT]
+> M-Queries are managed by ***Microsoft.Mashup.OleDB.1*** Provider
+> Before using any connection through Vba, you must activate this provider by opening once :
+> - `Data` _tab_  >  `Queries & connections` _panel_
+
 From Vba perspective, queries look easier to manage than other objects for collecting, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned data. Even though, make mFormula works may require special attention while M langage's syntax is probably less common to popular languages. Its purpose is exclusively to return data, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least one first part from the whole set of final instructions, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
 
 - in Vba : **double quotation marks** are **escaped by themself**. The formula could seem heavier since it can use a lot of them between variables and references.
@@ -154,23 +162,20 @@ let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null
 ```
 "<br>
 
-> [!IMPORTANT]
-> M-Queries are used with _mashUp_ Provider
-
 <a name="Connections-follow-up"></a>
 ### 🦌 Let connections within Vba
 
 .workbookConnection object is complexe and different parts of it can be used for a single purpose besides its caracteristical values.
 documentation is mingled about _adding_ methods, and AI let an explaination for the following observations : 
-- in vba documentation, only exists .add and seems to describe .add2 method
+- in vba documentation, only exists .add and seems to describe signature of .add2 method
 - however, both .add and .add2 seem to be correctly described in .NET/interop documentation
-- info in vba shows ...
 
 > [!NOTE]
-> ...
+> The _signature_ of a method is its formal parameter definitions
 
-workbook.workbookConnections.add2 will add the connection to the data Model and ....
-
+> [!IMPORTANT]
+> .add2 is an overload of .add and extend it with two more additionnal paramaters. It offers to load the data of the futur connection directly into the Data Model.
+> It is possible to use `ActiveWorkbook.Model.AddConnection` in complement to `.add` in this purpose but it recreates a new connection.
 
 In the **`connection string`** property, we declare the provider and the source, as they must be compatibles. Then a query can be mounted in a **`command text`**. Once again, it must be in a valid shape for the _engine_ that is inside or behind the provider, and `command value` is required to precise what this command contains exactly. Then the engine might be able to query directly the source before fetching requested data.
 <br>
@@ -180,19 +185,18 @@ see [XlCmdType enumeration](https://learn.microsoft.com/en-us/office/vba/api/exc
 | Name | Value | Description |
 | :--- | :---: | --- |
 | xlCmdCube | 1 | Contains a cube name for an OLAP data source. |
-| xlCmdDAX | 8 | Contains a Data Analysis Expressions (DAX) formula. |
-| xlCmdDefault | 4 | Contains command text that the OLE DB provider understands. |
-| xlCmdExcel | 7 | Contains an Excel formula. |
-| xlCmdList | 5 | Contains a pointer to list data. |
 | xlCmdSql | 2 | Contains an SQL statement. |
 | xlCmdTable | 3 | Contains a table name for accessing OLE DB data sources. |
+| xlCmdDefault | 4 | Contains command text that the OLE DB provider understands. |
+| xlCmdList | 5 | Contains a pointer to list data. |
 | xlCmdTableCollection | 6 | Contains the name of a table collection. |
+| xlCmdExcel | 7 | Contains an Excel formula. |
+| xlCmdDAX | 8 | Contains a Data Analysis Expressions (DAX) formula. |
 
 <br>
 
-In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some data, like a SQL command. But as I understood AI's course, SQL cannot be executed by the Excel file's system itself, as it is the working context for this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the data fetched from a distant file. 
-
-If a filter must be applied on large scale tables from Excel file, it is then wiser to use the provider that is dedicated to **Power Query** for getting better performances. We process with queries made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba.
+ 
+If a filter must be applied on large scale tables from Excel file, it is then wiser to use the provider that is dedicated to **Power Query** for getting better performances.
 [follow up](#Queries-follow-up)
 
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. See [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype).
@@ -221,11 +225,17 @@ see [XlListObjectSourceType enumeration](https://learn.microsoft.com/en-us/offic
 | Name | Value | Description |
 | :--- | :---: | --- |
 | xlSrcExternal | 0 | External data source (Microsoft SharePoint Foundation site) |
-| xlSrcModel | 4 | PowerPivot Model |
-| xlSrcQuery | 3 | Query |
 | xlSrcRange | 1 | Range |
 | xlSrcXml | 2 | XML |
+| xlSrcQuery | 3 | Query |
+| xlSrcModel | 4 | PowerPivot Model |
+ 
+When connections have been settled we can use `xlSrcModel` for calling them. The connections must be described in the Data Model. Optional parameters can be set in the **`.tableObject`** property of the new object before displaying the table by using `.refresh` method.
 
+Otherwise, `xlSrcExternal` let to establish the connection. After that the object have been created and before refreshing, additional parameters are required in **`.queryTable`** property to complet the connection settings. Equivalent optional parameters exist in this property than the previous one. 
+
+> [!NOTE]
+> I observed that the `.sourceType` property then switch to value 3 in the `xlSrcExternal` case, while it stays at value 4 in the `xlSrcModel` case.
 <br>
 <br>
 ## ➕ In-built indentation and conflicts
