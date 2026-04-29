@@ -207,8 +207,11 @@ see [XlCmdType enumeration](https://learn.microsoft.com/en-us/office/vba/api/exc
 <br>
 With the providers that are described here, it is possible to wrap the ordered table (which can be the target or its result through a query) into a SQL command. But as I understood AI's course, unlike when **Power Query** is used, the engines of these providers fetch the full table before applying SQL filters. If a filter is attempted on large-scale tables from Excel file, it is then wiser to use m-formulas for getting better performances.
 
+<br>
+<br>
+
+
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. See [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype).
-First about how [display connections](#Connections-follow-up).
 
 | Name | Value | Description |
 | :--- | :---: | --- |
@@ -222,8 +225,7 @@ First about how [display connections](#Connections-follow-up).
 | xlConnectionTypeWORKSHEET | 8 | Worksheet |
 | xlConnectionTypeNOSOURCE | 9 | No source |
 
-ACE and MashUp both create connection of type 1 corresponding to <ins>OleDB</ins>
-
+ACE and MashUp both create connection of type 1 corresponding to <ins>OleDB</ins>. See [above](#Command-follow-up) how to display connections.
 
 ### 🎁 Importing 
 
@@ -243,7 +245,7 @@ see [XlListObjectSourceType enumeration](https://learn.microsoft.com/en-us/offic
 
 When connections have been settled we can use `xlSrcModel` for calling them. 
 > [!WARNING]
-> The connections must be described in the Data Model. Description [above](#Datamodel-follow-up).
+> The connections must be described in the Data Model. Some informations [above](#Datamodel-follow-up).
 
 Optional parameters can be set in the **`.tableObject`** property of the new object before displaying the table by using `.refresh` method.
 <br>
