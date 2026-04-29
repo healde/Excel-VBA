@@ -27,13 +27,20 @@ A provider is in charge of managing a _query_ and **ensure the _connection_** to
 > [!NOTE]
 > Retrieving imported data into a displayed table is a complet other step after processing a connection, even main functionalities use two in one process.
 
-### 🟠 Queries
+### 🟠 Queries place
 
-they will depend of provider ....
+From the `Data` _tab_  >  `Queries & connections` _panel_, queries are managed by _Power Query engine_ and through ***Microsoft.Mashup.OleDB.1*** Provider for Vba.
 
+> [!IMPORTANT]
+> Before using connections that call a query of this kind through Vba, you must **activate** this _provider_ by opening once this panel
 
-In a **generic query structure**, the target can represents or mentions a table. It can be wrapped in a shape that filters some data, like a SQL command. But as I understood AI's course, SQL cannot be executed by the Excel file's system itself, as it is the working context for this program. Both of the two providers described below accept such command but this is the provider's engine that realises the filter of the data fetched from a distant file. 
- We process with queries made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba.
+This kind of queries are made of formulas coded in M langage for returning tables. The distant workbook (external source) is then contained by the **M formula** which is fully stored in a simple string variable within Vba. 
+
+<br>
+<br>
+
+The purpose of a query is always to **return one table** and the _command_ containing the query constitute an order to the provider. The command access to a target, **filters** and **shapes** its data. This _target_ represents or mentions a table, and that is a core notion for connections design.
+
 
 ### 🟢 Connection ability
 
@@ -41,7 +48,7 @@ At any moment you might want to access to the list of established connections an
 - `Data` _tab_  >  `Existing connections` _window_
 
 The process described below only use connections intern to the workbook. But data tables are in there at least from two types :
-- **Connection tables** are close to constitute the Data Model. They are **refering** to the existing connections stored in the workbook and let to avoid _query tables_ usage when importing.
+- **Connection tables** can constitute the Data Model. They **refers** to the existing connections stored in the workbook.
 - Workbook tables refer directly to tables presently loaded in some cells
 
 > [!TIP]
@@ -136,10 +143,6 @@ A couple of ways to get a full importation process are detailled below
 <a name="Queries-follow-up"></a>
 ### 🎄 Queries with m-Formulas
 
-> [!IMPORTANT]
-> M-Queries are managed by ***Microsoft.Mashup.OleDB.1*** Provider
-> Before using any connection through Vba, you must activate this provider by opening once :
-> - `Data` _tab_  >  `Queries & connections` _panel_
 
 From Vba perspective, queries look easier to manage than other objects for collecting, because there is no parameters outside the mFormula (except query's name) when you want to `.add` a new one to `ActiveWorkbook.Queries`. You can then modify `.name` or `.formula` for each entity, before using `.refresh` method to hit concerned data. Even though, make mFormula works may require special attention while M langage's syntax is probably less common to popular languages. Its purpose is exclusively to return data, which are get through the declaration behind `in` in the formula. Between `let` and `in` keywords can be placed at least one first part from the whole set of final instructions, offering nothing more than lighter command steps which are remaining nested each one to an other. These are two things that can look abrupt:
 
@@ -195,8 +198,7 @@ see [XlCmdType enumeration](https://learn.microsoft.com/en-us/office/vba/api/exc
 
 <br>
 
- 
-If a filter must be applied on large scale tables from Excel file, it is then wiser to use the provider that is dedicated to **Power Query** for getting better performances.
+With the providers that are described here, it is possible to wrap the ordered table (which can be the target or its result through a query) into a SQL command. But as I understood AI's course, unlike when **Power Query** is used, the engines of these providers fetch the full table before applying SQL filters. If a filter is attempted on large-scale tables from Excel file, it is then wiser to use m-formulas for getting better performances.
 [follow up](#Queries-follow-up)
 
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. See [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype).
