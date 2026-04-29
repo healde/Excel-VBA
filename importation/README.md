@@ -97,7 +97,9 @@ This is how I displayed them on my fluent ribbon
 ### 🖼 Macro list and implementation
 
 > [!TIP]
-> The global variables are used to experience Vba functions through Excel's user interface without having to set the code itself. However the design is not explicit, and exploring the modules is suggested before properly using the SandBox.
+> Global variables are used to experience Vba functions through Excel's user interface without having to set the code itself. However the design may not be as explicit as it should, and exploring the modules is suggested before properly using the SandBox.
+
+<br>
 
 - **Switch to table** (not related to the other actions) :
   - `Create Table` : Turn the active worksheet's used range into a table set as listObject
