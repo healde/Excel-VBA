@@ -15,7 +15,7 @@ Through this ReadMe and with this program share, I try to offer a collection of 
 <br>
 <br>
 
-## 🎈 Excel Basis
+## 💌 Excel Basis
 
 ### 🌍 Providers for transferts between Excel files
 
