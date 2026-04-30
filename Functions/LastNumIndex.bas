@@ -1,33 +1,33 @@
-Sub testgetIndexLimits()
+Sub testGetIndex()
 
     Dim myResult() As Integer
     Dim myString() As Variant
-    myString = Array("espece654", "terrain45aaa", "reintroduction4896", "observation456", "essai sans digit")
-    
-    Count = 5
-    Dim nam As Worksheet
-    
-    For Each ws In ActiveWorkbook.Sheets
-
-        Count = Count + 1
-        ReDim Preserve myString(Count)
-        myString(Count) = ws.Name
-    Next
+    myString = Array("espece654", "noDigit", "terrain45aaa", "no digit again", "reintroduction4896", "observation456")
     
     myResult = getIndexLimits(myString)
     
     MsgBox " " & myResult(0) & " elements [ " & myResult(1) & " ; " & myResult(2) & " ]"
     
-    indexGot$ = getOnlyIndex(myString(0))
+    indexStr% = 0
+    Dim el As Variant       ' toggle loop
+    For Each el In myString ' toggle loop
     
-    If Not indexGot = "" Then
-        indexInt% = CInt(indexGot)
-        MsgBox myString(0) & " -> " & Replace(myString(0), indexGot, indexGot + 1, Count:=1)
-    Else
-        MsgBox "Get """ & indexGot & " "" from """ & myString(0) & """ > Vartype: " & VarType(indexGot)
-    End If
+        indexGot$ = getOnlyIndex(myString(indexStr))
+        
+        If Not indexGot = "" Then
+            indexInt% = CInt(indexGot)
+            MsgBox "Incrementation : " & myString(indexStr) & " -> " & Replace(myString(indexStr), indexGot, indexGot + 1, Count:=1)
+        Else
+            MsgBox "Get """ & indexGot & " "" from """ & myString(indexStr) & """ > Vartype: " & VarType(indexGot)
+        End If
+
+    indexStr = indexStr + 1 ' toggle loop
+    Next                    ' toggle loop
     
 End Sub
+
+
+
 
 Function getIndexLimits(elements As Variant) As Integer()
 
@@ -63,8 +63,6 @@ Next
                 
 End Function
 
-
-' shared between ManageQueries(), and errorName() Function
 Function getOnlyIndex(ByVal originame As String) As String
 
     matchIn = 0   ' reset the flag in
