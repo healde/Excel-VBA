@@ -178,14 +178,14 @@ let SourceRef = Excel.Workbook(File.Contents(""C:\user\distantBook.xlsx""), null
 
 .workbookConnection object is complexe and different parts of it can be used for a single purpose besides its caracteristical values.
 documentation is mingled about _adding_ methods, and AI let an explaination for the following observations : 
-- in vba documentation, only exists .add and seems to describe signature of .add2 method
-- however, both .add and .add2 seem to be correctly described in .NET/interop documentation
+- in vba documentation, only exists `.add` and seems to describe signature of `.add2` method
+- however, both `.add` and `.add2` seem to be correctly described in .NET/interop documentation
 
 > [!NOTE]
 > The _signature_ of a method is its formal parameter definitions
 
 > [!IMPORTANT]
-> .add2 is an overload of .add and extend it with two more additionnal paramaters. It offers to load the data of the futur connection directly into the Data Model.
+> `ActiveWorkbook.Connections.add2` is an overload of `ActiveWorkbook.Connections.add` and extend it with two more additionnal paramaters. It offers to load the data of the futur connection directly into the Data Model.
 > It is possible to use `ActiveWorkbook.Model.AddConnection` in complement to `.add` in this purpose but it recreates a new connection.
 
 
@@ -212,6 +212,8 @@ With the providers that are described here, it is possible to wrap the ordered t
 <br>
 <br>
 
+> [!TIP]
+> It is possible to use `name` and `description` parameters as a hint of _origin_ to distinguish the connections that are managed within Vba from those modified through user interface.
 
 The resulting `.workbookConnection` object which is accessible within Vba also get `.connectionType` property. See [XlConnectionType enumeration](https://learn.microsoft.com/en-gb/office/vba/api/excel.xlconnectiontype).
 
@@ -283,25 +285,47 @@ Otherwise, `xlSrcExternal` let to establish the connection. After that the objec
 > [!NOTE]
 > This case only happen within Vba, because adding a connection manually does not multiplicate connections to one query (see [below](#add-manually)). But it has no effect on the loading data process, since the connection itself still links the right query.
 
-## 🖌 Special behaviors
+## 🖋 Names
+
+### open table from `Existing connections` _window_
+
+Creates connections named : 
+- with *target* a query or a range, and *i* starting at *1* : ModelConnection_*target*_*i*  
+Creates table named :
+- with *target* a query or a range, and *i* starting at *1* : Table_*target*_*i*  
+
+### import with xlSrcModel
+
+Creates connections named : 
+- By default which can be changed through `.ListObject.DisplayName`, with *i* starting at *1* : ModelConnection_ExternalData_*i*  
+- ThisWorkbookDataModel*i*
+Creates table named :
+- By default which can be changed through `.workbookConnection`, with *i* starting at *1* : Table_ExternalData_*i*  
+
+### import with xlSrcExternal
+
+Creates connection named : 
+- with *i* starting at *Null* : Connection*i*
+Creates table named :
+- By default which can be changed through `.workbookConnection`, with *i* starting at *1* : ModelConnection_ExternalData_*i*  
+
+### Forbidden caracters in table name
+
+It also is happening during auto-generated name process. If the original name presents any forbidden caracters such as space or parenthesis, they are replaced by underscore into the new name. Unless the original name ends by forbidden caracters, these are then removed.
 
 ### Add query with spaces arround the name
 
 When you rename a query name or when you use it through any process refering to it, start and end spaces should be then escaped. But when you add query within Vba, so you can get multiple same looking queries (which are not). However you should then not be able to rename a query like another nor to confirm a name with spaces arround, and you can refer to a query only if it exists with a conform name.
 
-### Forbidden caracters in table name
+## 🖌 Special behaviors
 
-Workbook tables that would have been created through a connecting process get auto-generated name. If this one present any forbidden caracters such as space or parenthesis, they are replaced by underscore. Unless the name ends by forbidden caracters, these are then removed.
-
-### Manually add connection, versus doing within VBA
-
-Connection is set _by hand_ with default name and default description. Both come from the name of the query which the connection support. Name and description are arguments of the connections _`.add` method_, so you can choose to let a different sentence for the description as a hint of _origin_.
+### Comparing adding connection, manually versus VBA
 
 <a name="add-manually"></a>
 > [!IMPORTANT]
-> For _hand-commands_ is always treated the **first** matching **connection of the list**.
+> When query is manually operated (through user interface), it is always the **first** matching **connection of the list** that is treated for consequence.
 
-- It means to add connection manually from a query would creates new connection, only if none of connections already refers to this query. Else it updates the options of the first connection found, such as setting a connection table into Data Model, while it refresh with preserving original name and description.
+- It means to add cownnection manually from a query would creates new connection, only if none of connections already refers to this query. Else it updates the options of the first connection found, such as setting a connection table into Data Model, while it refresh with preserving original name and description.
 
 - As well, renaming query manually will only affect the first connection which refers to it. This action will not snap the link to its related connection table if this one exists in the model object. _However_, unlike setting connection again, the affected connection seems to at least partially reset. Indeed name and description both change for the default ones availables, and only the connection table's name would stay unchanged[^2].
 
@@ -311,6 +335,7 @@ Connection is set _by hand_ with default name and default description. Both come
 > Delete a query manually erase all connections and their tables bound to Data Model, while the connections entirely remain if a query is deleted through Vba.
 
 ### Data tables are unrefreshable if some of their connections have been disabled
+
 - Data table imported from an existing connection needs this connection as much as its internal workbook connection made for it.
 - Whereas data table imported directly from an external source needs so far its workbook connection only.
 
