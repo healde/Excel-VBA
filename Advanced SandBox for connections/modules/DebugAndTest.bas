@@ -1,37 +1,4 @@
 Attribute VB_Name = "DebugAndTest"
-Sub testgetIndexLimits()
-
-    Dim myResult() As Integer
-    Dim myString() As Variant
-    myString = Array("espece654", "terrain45aaa", "reintroduction4896", "observation456", "essai sans digit")
-    
-    Count = 5
-    Dim nam As Worksheet
-    
-    For Each ws In ActiveWorkbook.Sheets
-
-        Count = Count + 1
-        ReDim Preserve myString(Count)
-        myString(Count) = ws.Name
-    Next
-    
-    myResult = getIndexLimits(myString)
-    
-    MsgBox " " & myResult(0) & " elements [ " & myResult(1) & " ; " & myResult(2) & " ]"
-    
-    indexGot$ = getOnlyIndex(myString(0))
-    
-    If Not indexGot = "" Then
-        indexInt% = CInt(indexGot)
-        MsgBox myString(0) & " -> " & Replace(myString(0), indexGot, indexGot + 1, Count:=1)
-    Else
-        MsgBox "Get """ & indexGot & " "" from """ & myString(0) & """ > Vartype: " & VarType(indexGot)
-    End If
-    
-End Sub
-
-
-
 Sub myWeirdestDebug()
 
 Dim lio As ListObject
